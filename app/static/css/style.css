@@ -1,0 +1,15 @@
+/*CSS separado en partes para meter las interfaces rápido,
+hay que unirlo refactorizado. Tener todo separado afecta la
+performance de la aplicación.*/
+@import "welcome.css";
+@import "registro.css";
+
+html, body {
+    height: 80%;
+    background-color: #4286f4;
+}
+#navbar
+{
+    background-color: blue;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>¡Bienvenido a UruGuía!</title>      
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+      <script src="{{ url_for('static',filename='script.js') }}"></script>
+    </head>
+    <body>
+        <div id='welcome-container'>
+            <div id="welcome-content">
+                <div id="welcome-pet">
+                    Imágen de posible mascota.
+                </div>
+                <div id='welcome-login-choice'>
+                    <button onclick="botonesCrearCuenta()">
+                        Soy nuevo en esta plataforma.
+                    </button>
+                    <div id="welcome-hidden-button">
+                        <a href="/index/registro">
+                            <button>Soy un turista</button>
+                        </a>
+                        <a href="/index/registro">
+                            <button>Soy una empresa</button>
+                        </a>                              
+                        </button>
+                    </div>
+                    <button id="btnLogin" onclick="botonAlLogin()">
+                        Ya tengo una cuenta.
+                    </button>
+                    <form id="login-hidden">
+                        Email: <input type="email" required>
+                        <br>
+                        Contraseña: <input type="password" required>
+                        <br>
+                        <a href="/app/templates/main.html">
+                            <center>
+                                    <input type="submit" id="welcome-iniciar-sesion" value="Iniciar sesión">
+                            </center>
+                        </a>
+                    </form>
+                </div>
+            </div>            
+        </div>        
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>¡Bienvenido a UruGuía!</title>      
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    </head>
+    <body>
+        <div id='registro-container'>
+            <div id="registro-content">
+                <div id="registro-pet">
+                    Imagen de mascota?
+                </div>
+                <form action="" method="post" id="registro-formulario">
+                    <div id="formulario-imagen">
+                        Imagen tuya
+                    </div>
+                    <div id="formulario-campos">
+                        Nombre y apellido: <input type="text" required>
+                        Email: <input type="email" required>
+                        Contraseña: <input type="password" required>
+                        Usted es: <input type="radio" name="tipo" value="Turista" required> Male<br>
+                        <input type="radio" name="tipo" value="Empresa"> Female<br>              
+                    </div>
+                    <div id="formulario-campos-extendido">
+                        <!--if turista-->
+                        Nombre y apellido: <input type="number" required>
+                        País de origen: <input type="text" required>
+                        <!--else (empresa)-->
+                        Nombre de la empresa: <input type="text" required>
+                        <!--end if-->                        
+                    </div>
+                    <a href="/app/templates/index.html">
+                        <input type="submit" id="formulario-submit" value="Crear usuario">
+                    </a>
+                </form>
+            </div>            
+        </div>        
+    </body>
+</html>

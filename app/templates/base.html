@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      {% if title %}
+      {% else %}
+      {% endif %}
+      <title>{{ title }}</title>      
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    </head>
+    <body>
+        <div id='navbar'>
+          Microblog: <a href="/exit">Home</a>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
