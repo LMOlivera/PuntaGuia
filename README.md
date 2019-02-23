@@ -1,8 +1,17 @@
 # UruGuia
 Proyecto del primer año de la carrera Analista TI del proyecto b_IT. Guía turística para Uruguay.
 
-# Cómo trabajaremos
+# Cómo trabajar con este repositorio
 Este es un pequeño manual para saber como están organizadas las cosas en el proyecto.
+
+## Archivos
+- Base de datos: Contiene el diagrama de la base de datos y un archivo SQL para cargar en WAMPServer.
+- Prototipo - Interfaz de usuario: Imagenes prototipo para implementar en el programa.
+- app: Contiene el programa.
+- README.md: Esta guía.
+- Start-Server-bat: Si lo ejecutas en tu computadora cargará la aplicación en tu navegador.
+- uruguia.py: Este archivo carga todo lo de la carpeta "app".
+
 
 ### Base de datos
 La base de datos del proyecto está hecha en MySQL. Se debe descargar [WAMPServer](http://www.wampserver.es/#home), entrar en phpMyAdmin, crear una base de datos (por ejemplo, UruGuia_bd_test), entrar a ella y en la pestaña de SQL ingresar el contenido del archivo que se encuentra en la carpeta "Base de Datos".
