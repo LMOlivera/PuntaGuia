@@ -3,13 +3,25 @@ hay que unirlo refactorizado. Tener todo separado afecta la
 performance de la aplicación.*/
 @import "welcome.css";
 @import "registro.css";
+@import "principal.css";
 
 html, body {
     height: 80%;
     background-color: #4286f4;
 }
-#navbar
+nav
 {
     background-color: blue;
+}
+
+nav ul{
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 

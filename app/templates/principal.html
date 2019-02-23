@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>¡Bienvenido a UruGuía!</title>      
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    </head>
+    <body>
+        <!--Se van a cargar 2 paginas distintas dependiendo el
+            tipo de usuario, hay que ver como hacemos eso-->
+        <nav>
+            <ul>
+                <li>Logo</li>
+                <li>Opción</li>
+                <li>Opción</li>
+                <li>Perfil usuario</li>
+                <li>Cerrar sesión</li>
+            </ul>
+        </nav>        
+        <!--VENTANA TURISTA-->
+        <div id="clima-content">
+            <div id="clima-actual">
+
+            </div>
+            <div id="clima-semana">
+
+            </div>
+        </div>
+        <div id="listado-categorías">
+            <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
+            <ul>
+                <li>Categoria</li>
+                <li>Categoria</li>
+                <li>Categoria</li>
+                <li>Categoria</li>
+            </ul>
+        </div>
+        <!--VENTANA EMPRESA-->
+        <div id="dialog-agregar">
+            Agregar
+        </div>
+        <div id="listar-establecimientos-lugares">
+
+        </div>
+    <body>
+</html>

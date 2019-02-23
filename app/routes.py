@@ -10,8 +10,7 @@ def bienvenido():
 def registro():
     return render_template('registro.html')
 
-
 @app.route('/principal')
 def index():
-    return render_template('index.html', title='Inicio')
+    return render_template('principal.html')
 
