@@ -1,10 +1,24 @@
-from flask import render_template
+from flask import render_template, flash, redirect
 from app import app
+from app.forms import LoginForm
+import pymysql
 
-@app.route('/')
-@app.route('/index')
+# Hay que revisar esto, tal vez se pueda mejorar
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def bienvenido():
-    return render_template('bienvenido.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        db = pymysql.connect("localhost", "root", "", "uruguia_bd_test")
+        cursor = db.cursor()
+        sql = "SELECT * FROM usuario"
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        print(results)
+        #flash('Login requested for user {}, remember_me={}'.format(
+        #    form.username.data, form.remember_me.data))
+        return redirect('/principal')
+    return render_template('bienvenido.html', form=form)
 
 @app.route('/index/registro')
 def registro():
@@ -13,4 +27,3 @@ def registro():
 @app.route('/principal')
 def index():
     return render_template('principal.html')
-

@@ -16,10 +16,10 @@
                         Soy nuevo en esta plataforma.
                     </button>
                     <div id="welcome-hidden-button">
-                        <a href="/index/registro">
+                        <a href="{{ url_for('registro') }}"><!--<a href="/index/registro">-->
                             <button>Soy un turista</button>
                         </a>
-                        <a href="/index/registro">
+                        <a href="{{ url_for('registro') }}">
                             <button>Soy una empresa</button>
                         </a>                              
                         </button>
@@ -27,17 +27,26 @@
                     <button id="btnLogin" onclick="botonAlLogin()">
                         Ya tengo una cuenta.
                     </button>
-                    <form id="login-hidden">
-                        Email: <input type="email" required>
-                        <br>
-                        Contraseña: <input type="password" required>
-                        <br>
-                        <a href="/app/templates/main.html">
-                            <center>
-                                    <input type="submit" id="welcome-iniciar-sesion" value="Iniciar sesión">
-                            </center>
-                        </a>
-                    </form>
+                    
+                    <form id="login-hidden" action="" method="post" novalidate>
+                            {{ form.hidden_tag() }}
+                            <p>
+                                {{ form.username.label }}<br>
+                                {{ form.username(size=32) }}<br>
+                                {% for error in form.username.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                            <p>
+                                {{ form.password.label }}<br>
+                                {{ form.password(size=32) }}<br>
+                                {% for error in form.password.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+                            <p>{{ form.submit() }}</p>
+                        </form>
                 </div>
             </div>            
         </div>        
