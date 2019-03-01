@@ -7,14 +7,18 @@ import pymysql
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def bienvenido():
-    form = LoginForm()
-    if form.validate_on_submit():
+    form = LoginForm() # Formulario de forms.py, se importa
+    if form.validate_on_submit(): #Al submitear data se corre esto
+        # BASE DE DATOS!!!
         db = pymysql.connect("localhost", "root", "", "uruguia_bd_test")
         cursor = db.cursor()
         sql = "SELECT * FROM usuario"
         cursor.execute(sql)
         results = cursor.fetchall()
         print(results)
+        #####################
+
+        # Manda un mensaje, podrás verlo comentado en bienvenido.html
         #flash('Login requested for user {}, remember_me={}'.format(
         #    form.username.data, form.remember_me.data))
         return redirect('/principal')

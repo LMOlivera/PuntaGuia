@@ -27,24 +27,32 @@
                     <button id="btnLogin" onclick="botonAlLogin()">
                         Ya tengo una cuenta.
                     </button>
-                    
-                    <form id="login-hidden" action="" method="post" novalidate>
-                            {{ form.hidden_tag() }}
+                    <!--
+
+                    -->
+                    <form id="login-hidden" action="" method="post">
+                        <!--
+                            form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
+                        -->    
+                        {{ form.hidden_tag() }}
                             <p>
-                                {{ form.username.label }}<br>
-                                {{ form.username(size=32) }}<br>
-                                {% for error in form.username.errors %}
+                                {{ form.email.label }}<br>
+                                {{ form.email(size=32) }}<br>
+                                <!-- Esto probablemente se borre, puede ser útil para cuando le erran al user
+                                {% for error in form.email.errors %}
                                 <span style="color: red;">[{{ error }}]</span>
                                 {% endfor %}
+                                -->
                             </p>
                             <p>
                                 {{ form.password.label }}<br>
                                 {{ form.password(size=32) }}<br>
+                                <!-- Esto probablemente se borre, puede ser útil para cuando le erran al user
                                 {% for error in form.password.errors %}
                                 <span style="color: red;">[{{ error }}]</span>
                                 {% endfor %}
+                                -->
                             </p>
-                            <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
                             <p>{{ form.submit() }}</p>
                         </form>
                 </div>

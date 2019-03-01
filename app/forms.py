@@ -1,9 +1,12 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
+from wtforms.fields.html5 import EmailField
+# Este archivo contiene todos los formularios del sistema.
 
 class LoginForm(FlaskForm):
-    username = StringField('Email', validators=[DataRequired()])
+    # validators argument es para validaciones.
+    # DataRequired chequea que no estén vacíos, aunque existen más validaciones.
+    email = EmailField('Email', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
-    remember_me = BooleanField('Recordarme')
     submit = SubmitField("Iniciar sesión")
