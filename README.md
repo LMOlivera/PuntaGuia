@@ -21,8 +21,10 @@ Para poder usar el sistema se debe tener instalado:
 - Python 3
 - pip
   - Flask
-  - flask-wtf
-  - PyMySQL
+  - flask-WTF
+  - pymysql
+  - flask-login (TESTEANDO ACTUALMENTE)
+- Y tener abierta la base de datos del proyecto en WAMPServer.
 
 ### Base de datos
 La base de datos del proyecto está hecha en MySQL. Se debe descargar [WAMPServer](http://www.wampserver.es/#home), entrar en phpMyAdmin, crear una base de datos (por ejemplo, UruGuia_bd_test), entrar a ella y en la pestaña de SQL ingresar el contenido del archivo que se encuentra en la carpeta "Base de Datos".

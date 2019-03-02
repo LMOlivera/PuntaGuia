@@ -27,31 +27,31 @@
                     <button id="btnLogin" onclick="botonAlLogin()">
                         Ya tengo una cuenta.
                     </button>
-                    <!--
-
-                    -->
+                    {% if session['invalid_user'] %}
+                    <form id="login-show" action="" method="post">
+                    {% else %}
                     <form id="login-hidden" action="" method="post">
+                    {% endif %}
                         <!--
                             form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
                         -->    
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <p class="error">
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </p>
+                            {% endif %}
+                        {% endwith %}
                         {{ form.hidden_tag() }}
                             <p>
                                 {{ form.email.label }}<br>
                                 {{ form.email(size=32) }}<br>
-                                <!-- Esto probablemente se borre, puede ser útil para cuando le erran al user
-                                {% for error in form.email.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
-                                -->
                             </p>
                             <p>
                                 {{ form.password.label }}<br>
                                 {{ form.password(size=32) }}<br>
-                                <!-- Esto probablemente se borre, puede ser útil para cuando le erran al user
-                                {% for error in form.password.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
-                                -->
                             </p>
                             <p>{{ form.submit() }}</p>
                         </form>
