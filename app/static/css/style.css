@@ -11,7 +11,8 @@ html, body {
 }
 nav
 {
-    background-color: blue;
+    background-color: red;
+    text-align: center;
 }
 
 nav ul{

@@ -30,6 +30,7 @@ def bienvenido():
                 return redirect('/')
             else:
                 session.pop('invalid_user', None)
+                session['logueado']=True
                 session['id_usuario'] = userdata['id_usuario']
                 session['email'] = userdata['email']
                 session['nombre'] = userdata['nombre']
@@ -92,6 +93,11 @@ def registro():
 
 @app.route('/principal')
 def index():
+    if session.get('logueado'):
+        print('ok')
+    else:
+        session.clear()
+        return redirect('/')
     return render_template('principal.html')
 
 @app.route('/logout')

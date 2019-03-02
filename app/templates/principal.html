@@ -13,13 +13,14 @@
                 <li>Opción</li>
                 <li>Opción</li>
                 <li>Perfil usuario</li>
-                <li>Cerrar sesión</li>
+                <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
             </ul>
-        </nav>        
+        </nav>
+        {% if session['tipo']=='turista' %}
         <!--VENTANA TURISTA-->
         <div id="clima-content">
             <div id="clima-actual">
-
+                Clima
             </div>
             <div id="clima-semana">
 
@@ -34,12 +35,14 @@
                 <li>Categoria</li>
             </ul>
         </div>
+        {% else %}
         <!--VENTANA EMPRESA-->
         <div id="dialog-agregar">
             Agregar
         </div>
         <div id="listar-establecimientos-lugares">
-
+            
         </div>
+        {% endif %}
     <body>
 </html>
