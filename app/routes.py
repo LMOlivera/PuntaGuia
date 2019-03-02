@@ -20,19 +20,21 @@ def bienvenido():
         with connection.cursor() as cursor:
             email=form.email.data
             password=form.password.data
-            query = "SELECT 1 FROM usuario WHERE email=%s AND contrasena=%s"
+            query = "SELECT id_usuario, email, nombre, tipo FROM usuario WHERE email=%s AND contrasena=%s"
             cursor.execute(query,(email,password))
-            #results = cursor.fetchall()
-            # connection.commit()
+            userdata = cursor.fetchone()
             results = cursor.rowcount
             if results==0:
                 flash('El usuario que acabas de ingresar no existe')                
                 session['invalid_user']="true"               
                 return redirect('/')
-            return redirect('/principal')
-        # Manda un mensaje, podrás verlo comentado en bienvenido.html
-        #flash('Login requested for user {}, remember_me={}'.format(
-        #    form.username.data, form.remember_me.data))
+            else:
+                session.pop('invalid_user', None)
+                session['id_usuario'] = userdata['id_usuario']
+                session['email'] = userdata['email']
+                session['nombre'] = userdata['nombre']
+                session['tipo'] = userdata['tipo']
+                return redirect('/principal')
     return render_template('bienvenido.html', form=form)
 
 @app.route('/index/registro')
@@ -41,7 +43,6 @@ def registro():
 
 @app.route('/principal')
 def index():
-    session.pop('invalid_user', None)
     return render_template('principal.html')
 
 @app.route('/logout')
