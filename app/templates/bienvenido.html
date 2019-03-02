@@ -16,10 +16,10 @@
                         Soy nuevo en esta plataforma.
                     </button>
                     <div id="welcome-hidden-button">
-                        <a href="{{ url_for('registro') }}"><!--<a href="/index/registro">-->
+                        <a href="{{ url_for('registro', tipo='turista') }}"><!--<a href="/index/registro">-->
                             <button>Soy un turista</button>
                         </a>
-                        <a href="{{ url_for('registro') }}">
+                        <a href="{{ url_for('registro', tipo='empresa') }}">
                             <button>Soy una empresa</button>
                         </a>                              
                         </button>
@@ -45,16 +45,16 @@
                             {% endif %}
                         {% endwith %}
                         {{ form.hidden_tag() }}
-                            <p>
-                                {{ form.email.label }}<br>
-                                {{ form.email(size=32) }}<br>
-                            </p>
-                            <p>
-                                {{ form.password.label }}<br>
-                                {{ form.password(size=32) }}<br>
-                            </p>
-                            <p>{{ form.submit() }}</p>
-                        </form>
+                        <p>
+                            {{ form.email.label }}<br>
+                            {{ form.email(size=32) }}<br>
+                        </p>
+                        <p>
+                            {{ form.password.label }}<br>
+                            {{ form.password(size=32) }}<br>
+                        </p>
+                        <p>{{ form.submit() }}</p>
+                    </form>
                 </div>
             </div>            
         </div>        

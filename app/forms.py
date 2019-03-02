@@ -10,3 +10,16 @@ class LoginForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired()])
     password = PasswordField('Contraseña', validators=[DataRequired()])
     submit = SubmitField("Iniciar sesión")
+
+class RegisterForm(FlaskForm):
+    email = EmailField('Email')
+    nombre = StringField('Nombre y apellido')
+    password = PasswordField('Contraseña')
+    # foto?
+    tipo = StringField('Tipo')
+    # TURISTA
+    edad = StringField('Edad')
+    pais = StringField('País de origen')
+    # EMPRESA
+    nombreEmpresa = StringField('Nombre de la empresa')
+    submit = SubmitField("Crear usuario")

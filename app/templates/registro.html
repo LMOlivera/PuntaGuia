@@ -10,28 +10,40 @@
                 <div id="registro-pet">
                     Imagen de mascota?
                 </div>
-                <form action="" method="post" id="registro-formulario">
-                    <div id="formulario-imagen">
-                        Imagen tuya
-                    </div>
-                    <div id="formulario-campos">
-                        Nombre y apellido: <input type="text" required>
-                        Email: <input type="email" required>
-                        Contraseña: <input type="password" required>
-                        Usted es: <input type="radio" name="tipo" value="Turista" required> Turista<br>
-                        <input type="radio" name="tipo" value="Empresa"> Empresa<br>              
-                    </div>
-                    <div id="formulario-campos-extendido">
-                        <!--if turista-->
-                        Nombre y apellido: <input type="number" required>
-                        País de origen: <input type="text" required>
-                        <!--else (empresa)-->
-                        Nombre de la empresa: <input type="text" required>
-                        <!--end if-->                        
-                    </div>
-                    <a href="{{ url_for('index') }}"><!--<a href="/app/templates/index.html">-->
-                        <input type="submit" id="formulario-submit" value="Crear usuario">
-                    </a>
+                <form id="registro-formulario" action="" method="post">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.email.label }}<br>
+                    {{ form.email(size=32) }}<br>
+                </p>
+                <p>
+                    {{ form.nombre.label }}<br>
+                    {{ form.nombre(size=32) }}<br>
+                </p>
+                <p>
+                    {{ form.password.label }}<br>
+                    {{ form.password(size=32) }}<br>
+                </p>
+                <p>
+                    Acá te dejaría subir foto pero no está definido<br>
+                    El tipo de usuario está en una variable de sesión
+                </p>
+                {% if tipo=="turista" %}
+                <p>
+                    {{ form.edad.label }}<br>
+                    {{ form.edad(size=32) }}<br>
+                </p>
+                <p>
+                    {{ form.pais.label }}<br>
+                    {{ form.pais(size=32) }}<br>
+                </p>
+                {% else %}
+                <p>
+                    {{ form.nombreEmpresa.label }}<br>
+                    {{ form.nombreEmpresa(size=32) }}<br>
+                </p>
+                {% endif %} 
+                <p>{{ form.submit() }}</p>
                 </form>
             </div>            
         </div>        
