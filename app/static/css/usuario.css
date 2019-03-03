@@ -1,0 +1,9 @@
+#danger-zone{
+    background-color: tomato;
+    color: white;
+    padding: 5px;
+}
+
+#confirmar-borrar-usuario{
+    display: none;
+}

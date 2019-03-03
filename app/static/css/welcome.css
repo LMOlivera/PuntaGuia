@@ -31,6 +31,11 @@ al resto del CSS sin tener que dejarlo aparte (me explico?).*/
     flex-direction: column;
 }
 
+.error{
+    color:red;
+    font-weight: bold;      
+}
+
 /*Button fix?*/
 button{
     width: 100%;
@@ -54,5 +59,4 @@ button{
 #login-show{
     display: block;
 }
-
 /* FIN DE CSS EXCLUSIVO DE BIENVENIDA, REFACTORIZAR POR DIOS*/

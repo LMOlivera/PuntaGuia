@@ -13,3 +13,12 @@ function botonAlLogin(){
         document.getElementById("login-show").setAttribute("id","login-hidden");
     } 
 }
+
+function confirmarBorrarUsuario(){
+    var d = document.getElementById("confirmar-borrar-usuario");
+    if(d.style.display=="none"){
+        d.style.display="block";
+    }else{
+        d.style.display="none";
+    }
+}

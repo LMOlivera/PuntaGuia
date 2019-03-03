@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-02-2019 a las 23:16:09
+-- Tiempo de generación: 02-03-2019 a las 18:45:09
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -56,6 +56,14 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`id`, `nombre`) VALUES
+(3, 'Empresa Falsa 1'),
+(4, 'Empresa Falsa 2');
 
 -- --------------------------------------------------------
 
@@ -110,6 +118,14 @@ CREATE TABLE IF NOT EXISTS `turista` (
   `pais_origen` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `turista`
+--
+
+INSERT INTO `turista` (`id`, `edad`, `pais_origen`) VALUES
+(1, 25, 'Tangamandapio'),
+(2, 31, 'Nosedonde');
+
 -- --------------------------------------------------------
 
 --
@@ -125,7 +141,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
+(1, 'test1@test1.com', 'Fulano de Tal', 'contrasenia', NULL, 'Turista'),
+(2, 'test2@test2.com', 'Sultano de Tal', 'pass', NULL, 'Turista'),
+(3, 'test3@test3.com', 'Senior de Negocios', 'passempresa', NULL, 'Empresa'),
+(4, 'test4@test4.com', 'Seniora de Empresa', 'passempresa2', NULL, 'Empresa');
 
 -- --------------------------------------------------------
 

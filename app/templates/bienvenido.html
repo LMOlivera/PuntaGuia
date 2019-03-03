@@ -16,10 +16,10 @@
                         Soy nuevo en esta plataforma.
                     </button>
                     <div id="welcome-hidden-button">
-                        <a href="/index/registro">
+                        <a href="{{ url_for('registro', tipo='turista') }}"><!--<a href="/index/registro">-->
                             <button>Soy un turista</button>
                         </a>
-                        <a href="/index/registro">
+                        <a href="{{ url_for('registro', tipo='empresa') }}">
                             <button>Soy una empresa</button>
                         </a>                              
                         </button>
@@ -27,16 +27,33 @@
                     <button id="btnLogin" onclick="botonAlLogin()">
                         Ya tengo una cuenta.
                     </button>
-                    <form id="login-hidden">
-                        Email: <input type="email" required>
-                        <br>
-                        Contraseña: <input type="password" required>
-                        <br>
-                        <a href="/app/templates/main.html">
-                            <center>
-                                    <input type="submit" id="welcome-iniciar-sesion" value="Iniciar sesión">
-                            </center>
-                        </a>
+                    {% if session['invalid_user'] %}
+                    <form id="login-show" action="" method="post">
+                    {% else %}
+                    <form id="login-hidden" action="" method="post">
+                    {% endif %}
+                        <!--
+                            form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
+                        -->    
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <p class="error">
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </p>
+                            {% endif %}
+                        {% endwith %}
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.email.label }}<br>
+                            {{ form.email(size=32) }}<br>
+                        </p>
+                        <p>
+                            {{ form.password.label }}<br>
+                            {{ form.password(size=32) }}<br>
+                        </p>
+                        <p>{{ form.submit() }}</p>
                     </form>
                 </div>
             </div>            
