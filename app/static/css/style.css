@@ -4,6 +4,7 @@ performance de la aplicación.*/
 @import "welcome.css";
 @import "registro.css";
 @import "principal.css";
+@import "usuario.css";
 
 html, body {
     height: 80%;

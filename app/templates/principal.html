@@ -12,7 +12,7 @@
                 <li>Logo</li>
                 <li>Opción</li>
                 <li>Opción</li>
-                <li>Perfil usuario</li>
+                <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
                 <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
             </ul>
         </nav>
