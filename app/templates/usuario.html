@@ -15,9 +15,21 @@
                 <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
             </ul>
         </nav>
-        <section>
-            <article>
-
+        <section id="usuario">
+            <article id="usuario-informacion">
+                Datos del usuario:<br/><br/>
+                <p>
+                    Nombre: {{ session['nombre'] }}
+                </p>
+                <p>
+                    Email: {{ session['email'] }}
+                </p>
+                <p>
+                    Tipo de cuenta: {{ session['tipo'] }}
+                </p>
+                <p>
+                    <button><a href="{{ url_for('modificarUsuario') }}">Modificar usuario</a></button>
+                </p>
             </article>
             <article id="danger-zone">
                 <center>

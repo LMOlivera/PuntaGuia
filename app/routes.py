@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, session, request
 from app import app
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, ModifyForm
 import pymysql.cursors
 
 # Connect to the database
@@ -107,12 +107,66 @@ def index():
 
 @app.route('/principal/usuario')
 def usuario():
-    if session.get('logueado'):
-        print('ok')
-    else:
+    if not session.get('logueado'):
         session.clear()
         return redirect('/')
     return render_template('usuario.html')
+
+@app.route('/principal/usuario/modificar', methods=['GET','POST'])
+def modificarUsuario():
+    if not session.get('logueado'):
+        session.clear()
+        return redirect('/')
+    else:
+        form=ModifyForm()
+        try:
+            if form.validate_on_submit():
+                nombre = form.nombre.data
+                password = form.password.data
+                edad = form.edad.data
+                pais = form.pais.data
+                nombreEmpresa = form.nombreEmpresa.data
+                with connection.cursor() as cursor:
+                    query="""
+                        UPDATE usuario
+                        SET nombre=%s,
+                            contrasena=%s
+                        WHERE id_usuario=""" + str(session['id_usuario'])
+                    cursor.execute(query,(nombre,password))
+                    if session['tipo']=='turista':
+                        query="""
+                            UPDATE turista
+                            SET edad=%s,
+                                pais_origen=%s
+                            WHERE id=""" + str(session['id_usuario'])
+                        cursor.execute(query,(edad,pais))
+                    else:
+                        query="""
+                            UPDATE empresa
+                            SET nombre=%s
+                            WHERE id=""" + str(session['id_usuario'])
+                        cursor.execute(query,(nombreEmpresa))
+                connection.commit()
+                session['nombre'] = nombre
+                return redirect("/principal/usuario")
+            with connection.cursor() as cursor:
+                query="SELECT nombre, contrasena FROM usuario WHERE id_usuario=" + str(session['id_usuario'])
+                cursor.execute(query)
+                usuario=cursor.fetchone()
+                if session['tipo']=='turista':
+                    query="SELECT edad, pais_origen FROM turista WHERE id=" + str(session['id_usuario'])
+                    cursor.execute(query)
+                    turista=cursor.fetchone()
+                    empresa={"nombre_empresa":"Ninguno"}
+                else:
+                    query="SELECT nombre FROM empresa WHERE id=" + str(session['id_usuario'])
+                    cursor.execute(query)
+                    empresa=cursor.fetchone()
+                    turista={"edad":"0", "pais_origen":"Ninguno"}
+            connection.commit()
+        except:
+            return redirect('/')                    
+        return render_template('modificar_usuario.html', form=form, nombre=usuario['nombre'], contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre'])
 
 
 @app.route('/logout')

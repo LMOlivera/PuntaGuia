@@ -1,3 +1,12 @@
+#usuario{
+    background-color: whitesmoke;
+    padding: 5px;
+}
+
+#usuario-informacion{
+    background-color: rgb(33, 140, 211);
+}
+
 #danger-zone{
     background-color: tomato;
     color: white;
