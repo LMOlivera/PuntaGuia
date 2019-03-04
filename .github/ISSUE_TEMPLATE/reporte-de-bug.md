@@ -10,6 +10,9 @@ assignees: LMOlivera
 **Describe el error**
 Cuentanos el error y cómo te afectó.
 
+**Branch**
+¿Fue en master, dev o en otra branch?
+
 **Cómo reproducirlo:**
 Dinos los pasos a seguir para reproducirlo:
 1. Ir a '...'
