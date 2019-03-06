@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-03-2019 a las 18:45:09
+-- Tiempo de generación: 06-03-2019 a las 23:07:26
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -148,10 +148,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
-(1, 'test1@test1.com', 'Fulano de Tal', 'contrasenia', NULL, 'Turista'),
-(2, 'test2@test2.com', 'Sultano de Tal', 'pass', NULL, 'Turista'),
-(3, 'test3@test3.com', 'Senior de Negocios', 'passempresa', NULL, 'Empresa'),
-(4, 'test4@test4.com', 'Seniora de Empresa', 'passempresa2', NULL, 'Empresa');
+(1, 'test1@test1.com', 'Fulano de Tal', 'contrasenia', NULL, 'turista'),
+(2, 'test2@test2.com', 'Sultano de Tal', 'pass', NULL, 'turista'),
+(3, 'test3@test3.com', 'Senior de Negocios', 'passempresa', NULL, 'empresa'),
+(4, 'test4@test4.com', 'Seniora de Empresa', 'passempresa2', NULL, 'empresa');
 
 -- --------------------------------------------------------
 

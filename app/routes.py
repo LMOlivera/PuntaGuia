@@ -157,7 +157,7 @@ def modificarUsuario():
                     query="SELECT edad, pais_origen FROM turista WHERE id=" + str(session['id_usuario'])
                     cursor.execute(query)
                     turista=cursor.fetchone()
-                    empresa={"nombre_empresa":"Ninguno"}
+                    empresa={"nombre":"Ninguno"}
                 else:
                     query="SELECT nombre FROM empresa WHERE id=" + str(session['id_usuario'])
                     cursor.execute(query)
@@ -166,8 +166,8 @@ def modificarUsuario():
             connection.commit()
         except:
             return redirect('/')                    
-        return render_template('modificar_usuario.html', form=form, nombre=usuario['nombre'], contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre'])
-
+    print(session["tipo"])
+    return render_template('modificar_usuario.html', form=form, contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre']) 
 
 @app.route('/logout')
 def logout():
