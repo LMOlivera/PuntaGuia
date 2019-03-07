@@ -39,7 +39,7 @@ def bienvenido():
                     session['nombre'] = userdata['nombre']
                     session['tipo'] = userdata['tipo']
                     return redirect('/principal')
-    return render_template('bienvenido.html', form=form)
+    return render_template('bienvenido.html', title='¡Bienvenido a UruGuia!', form=form)
 
 @app.route('/index/registro', methods=['GET', 'POST'])
 def registro():
@@ -94,7 +94,7 @@ def registro():
                 return redirect('/index') 
             except NameError:    
                     print('Algo malo acaba de ocurrir: ' + NameError)         
-    return render_template('registro.html', form=form,tipo=nuevo['tipo'])
+    return render_template('registro.html', title="Registrar un nuevo usuario", form=form, tipo=nuevo['tipo'])
 
 @app.route('/principal')
 def index():
@@ -103,14 +103,14 @@ def index():
     else:
         session.clear()
         return redirect('/')
-    return render_template('principal.html')
+    return render_template('principal.html', title="Página principal")
 
 @app.route('/principal/usuario')
 def usuario():
     if not session.get('logueado'):
         session.clear()
         return redirect('/')
-    return render_template('usuario.html')
+    return render_template('usuario.html', title='Datos de la cuenta')
 
 @app.route('/principal/usuario/modificar', methods=['GET','POST'])
 def modificarUsuario():
@@ -167,7 +167,7 @@ def modificarUsuario():
         except:
             return redirect('/')                    
     print(session["tipo"])
-    return render_template('modificar_usuario.html', form=form, contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre']) 
+    return render_template('modificar_usuario.html', title="Modificar datos de la cuenta", form=form, contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre']) 
 
 @app.route('/principal/agregar_lugar', methods=['GET','POST'])
 def agregar_lugar():
@@ -215,7 +215,7 @@ def agregar_lugar():
                 return redirect("/principal")
         except:
             return redirect('/')      
-    return render_template('agregar_lugar.html', form=form)
+    return render_template('agregar_lugar.html', title="Registrar un establecimiento o evento", form=form)
 
 @app.route('/logout')
 def logout():

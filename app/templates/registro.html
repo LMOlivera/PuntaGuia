@@ -1,51 +1,46 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>¡Bienvenido a UruGuía!</title>      
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-    </head>
-    <body>
-        <div id='registro-container'>
-            <div id="registro-content">
-                <div id="registro-pet">
-                    Imagen de mascota?
-                </div>
-                <form id="registro-formulario" action="" method="post">
-                {{ form.hidden_tag() }}
-                <p>
-                    {{ form.email.label }}<br>
-                    {{ form.email(size=32) }}<br>
-                </p>
-                <p>
-                    {{ form.nombre.label }}<br>
-                    {{ form.nombre(size=32) }}<br>
-                </p>
-                <p>
-                    {{ form.password.label }}<br>
-                    {{ form.password(size=32) }}<br>
-                </p>
-                <p>
-                    Acá te dejaría subir foto pero no está definido<br>
-                    El tipo de usuario está en una variable de sesión
-                </p>
-                {% if tipo=="turista" %}
-                <p>
-                    {{ form.edad.label }}<br>
-                    {{ form.edad(size=32) }}<br>
-                </p>
-                <p>
-                    {{ form.pais.label }}<br>
-                    {{ form.pais(size=32) }}<br>
-                </p>
-                {% else %}
-                <p>
-                    {{ form.nombreEmpresa.label }}<br>
-                    {{ form.nombreEmpresa(size=32) }}<br>
-                </p>
-                {% endif %} 
-                <p>{{ form.submit() }}</p>
-                </form>
-            </div>            
-        </div>        
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div id='registro-container'>
+    <div id="registro-content">
+        <div id="registro-pet">
+            Imagen de mascota?
+        </div>
+        <form id="registro-formulario" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.nombre.label }}<br>
+            {{ form.nombre(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+        </p>
+        <p>
+            Acá te dejaría subir foto pero no está definido<br>
+            El tipo de usuario está en una variable de sesión
+        </p>
+        {% if tipo=="turista" %}
+        <p>
+            {{ form.edad.label }}<br>
+            {{ form.edad(size=32) }}<br>
+        </p>
+        <p>
+            {{ form.pais.label }}<br>
+            {{ form.pais(size=32) }}<br>
+        </p>
+        {% else %}
+        <p>
+            {{ form.nombreEmpresa.label }}<br>
+            {{ form.nombreEmpresa(size=32) }}<br>
+        </p>
+        {% endif %} 
+        <p>{{ form.submit() }}</p>
+        </form>
+    </div>            
+</div>
+{% endblock %}
