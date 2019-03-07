@@ -99,7 +99,7 @@ def registro():
 @app.route('/principal')
 def index():
     if session.get('logueado'):
-        print('ok')
+        pass
     else:
         session.clear()
         return redirect('/')
@@ -211,6 +211,16 @@ def agregar_lugar():
                             (%s,%s)
                             """
                     cursor.execute(query,(lugar['ide'],categoria))
+
+                    #INSERTA EN tiene BASANDOSE EN ide Y id
+                    query = """
+                            INSERT INTO tiene
+                            (ide, id)
+                            VALUES
+                            (%s,%s)
+                            """
+                    cursor.execute(query,(lugar['ide'],session['id_usuario']))
+
                 connection.commit()
                 return redirect("/principal")
         except:
