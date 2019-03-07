@@ -99,11 +99,34 @@ def registro():
 @app.route('/principal')
 def index():
     if session.get('logueado'):
-        pass
+        if session['tipo']=='turista':
+            pass
+        else:
+            try:
+                with connection.cursor() as cursor:
+                    #CONSIGUE lugares DE LA EMPRESA
+                    query = """
+                            SELECT l.nombre,
+                                   l.descripcion,
+                                   l.ubicacion,
+                                   l.tipo,
+                                   l.horario,
+                                   l.fecha
+                            FROM tiene t
+                            INNER JOIN lugar l
+                            ON t.ide=l.ide
+                            WHERE id=%s
+                            """
+                    cursor.execute(query,(session['id_usuario']))
+                    lugares = cursor.fetchall()
+                connection.commit()
+            except:
+                # Debe devolver un objeto vacío para listar
+                return redirect('/')      
     else:
         session.clear()
         return redirect('/')
-    return render_template('principal.html', title="Página principal")
+    return render_template('principal.html', title="Página principal", lugares=lugares)
 
 @app.route('/principal/usuario')
 def usuario():
@@ -233,22 +256,23 @@ def logout():
         idu = request.args.to_dict()
         iduINT = int(idu['id_usuario'])
         ses = int(session['id_usuario'])
-        with connection.cursor() as cursor:
-            query = """
-                    DELETE FROM usuario WHERE id_usuario=%s
-                    """ 
-            cursor.execute(query,(ses))
-            if session['tipo']=='turista':
+        if iduINT==ses:
+            with connection.cursor() as cursor:
                 query = """
-                        DELETE FROM turista WHERE id=%s
+                        DELETE FROM usuario WHERE id_usuario=%s
                         """ 
                 cursor.execute(query,(ses))
-            else:
-                query = """
-                    DELETE FROM empresa WHERE id=%s
-                    """ 
-                cursor.execute(query,(ses))
-        connection.commit()
+                if session['tipo']=='turista':
+                    query = """
+                            DELETE FROM turista WHERE id=%s
+                            """ 
+                    cursor.execute(query,(ses))
+                else:
+                    query = """
+                        DELETE FROM empresa WHERE id=%s
+                        """ 
+                    cursor.execute(query,(ses))
+            connection.commit()
     except:
         print("Logout")           
     session.clear()        

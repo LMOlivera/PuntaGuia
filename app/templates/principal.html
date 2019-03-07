@@ -28,7 +28,16 @@
     </button>
 </div>
 <div id="listar-establecimientos-lugares">
-    
+    {% for lugar in lugares %}
+        <p>
+            {{ lugar['nombre'] }}
+            {{ lugar['descripcion'] }}
+            {{ lugar['ubicacion'] }}
+            {{ lugar['tipo'] }}
+            {{ lugar['horario'] }}
+            {{ lugar['fecha'] }}
+        </p>
+    {% endfor %}
 </div>
 {% endif %}
 {% endblock %}
