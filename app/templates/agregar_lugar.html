@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>Ingrese datos del establecimiento/evento<br/><br/></center>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.nombre.label }}: {{ form.nombre(size=32) }}<br>
+    </p>
+    <p>
+        {{ form.descripcion.label }}: {{ form.descripcion(size=100) }}<br>
+    </p>
+    <p>
+        {{ form.ubicacion.label }}: {{ form.ubicacion(size=32) }}<br>
+    </p>
+    <p>
+        {{ form.categoria.label }}: {{ form.categoria }}<br>
+    </p>
+    <p>
+        {{ form.tipo.label }}: {{ form.tipo }}<br>
+    </p>
+    <p>
+        {{ form.horario.label }}: {{ form.horario(size=32) }}<br>
+    </p>
+    <p>
+        <p>{{ form.submit() }}</p>
+    </p>
+</form>
+{% endblock %}

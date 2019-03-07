@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="usuario">
+    <article id="usuario-informacion">
+        <center>Datos de la cuenta<br/><br/></center>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                Email: {{ session['email'] }}<br>
+            </p>
+            <p>
+                {{ form.nombre.label }}: {{ form.nombre(size=32, value=session['nombre']) }}<br>
+            </p>
+            <p>
+                {{ form.password.label }}: {{ form.password(size=32, value=contrasena) }}<br>
+            </p>
+            <p>
+                Tipo de cuenta: {{ session['tipo'] }}
+            </p>
+            {% if session['tipo']=='turista' %}
+            <p>
+                {{ form.edad.label }}: {{ form.edad(size=32, value=edad)}}<br>
+            </p>
+            <p>
+                {{ form.pais.label }}: {{ form.pais(size=32, value=pais) }}<br>
+            </p>
+            {% else %}
+            <p>
+                {{ form.nombreEmpresa.label }}: {{ form.nombreEmpresa(size=32, value=nombreEmpresa) }}<br>
+            </p>
+            {% endif %}
+            <p>
+                <p>{{ form.submit() }}</p>
+            </p>
+        </form>
+    </article>
+</section>
+{% endblock %}

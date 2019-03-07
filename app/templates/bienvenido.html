@@ -1,62 +1,56 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>¡Bienvenido a UruGuía!</title>      
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-      <script src="{{ url_for('static',filename='script.js') }}"></script>
-    </head>
-    <body>
-        <div id='welcome-container'>
-            <div id="welcome-content">
-                <div id="welcome-pet">
-                    Imágen de posible mascota.
-                </div>
-                <div id='welcome-login-choice'>
-                    <button onclick="botonesCrearCuenta()">
-                        Soy nuevo en esta plataforma.
-                    </button>
-                    <div id="welcome-hidden-button">
-                        <a href="{{ url_for('registro', tipo='turista') }}"><!--<a href="/index/registro">-->
-                            <button>Soy un turista</button>
-                        </a>
-                        <a href="{{ url_for('registro', tipo='empresa') }}">
-                            <button>Soy una empresa</button>
-                        </a>                              
-                        </button>
-                    </div>
-                    <button id="btnLogin" onclick="botonAlLogin()">
-                        Ya tengo una cuenta.
-                    </button>
-                    {% if session['invalid_user'] %}
-                    <form id="login-show" action="" method="post">
-                    {% else %}
-                    <form id="login-hidden" action="" method="post">
+{% extends "base.html" %}
+
+{% block content %}
+<div id='welcome-container'>
+    <div id="welcome-content">
+        <div id="welcome-pet">
+            Imágen de posible mascota.
+        </div>
+        <div id='welcome-login-choice'>
+            <button onclick="botonesCrearCuenta()">
+                Soy nuevo en esta plataforma.
+            </button>
+            <div id="welcome-hidden-button">
+                <a href="{{ url_for('registro', tipo='turista') }}"><!--<a href="/index/registro">-->
+                    <button>Soy un turista</button>
+                </a>
+                <a href="{{ url_for('registro', tipo='empresa') }}">
+                    <button>Soy una empresa</button>
+                </a>                              
+                </button>
+            </div>
+            <button id="btnLogin" onclick="botonAlLogin()">
+                Ya tengo una cuenta.
+            </button>
+            {% if session['invalid_user'] %}
+            <form id="login-show" action="" method="post">
+            {% else %}
+            <form id="login-hidden" action="" method="post">
+            {% endif %}
+                <!--
+                    form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
+                -->    
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <p class="error">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </p>
                     {% endif %}
-                        <!--
-                            form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
-                        -->    
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                            <p class="error">
-                                {% for message in messages %}
-                                {{ message }}
-                                {% endfor %}
-                            </p>
-                            {% endif %}
-                        {% endwith %}
-                        {{ form.hidden_tag() }}
-                        <p>
-                            {{ form.email.label }}<br>
-                            {{ form.email(size=32) }}<br>
-                        </p>
-                        <p>
-                            {{ form.password.label }}<br>
-                            {{ form.password(size=32) }}<br>
-                        </p>
-                        <p>{{ form.submit() }}</p>
-                    </form>
-                </div>
-            </div>            
-        </div>        
-    </body>
-</html>
+                {% endwith %}
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.email.label }}<br>
+                    {{ form.email(size=32) }}<br>
+                </p>
+                <p>
+                    {{ form.password.label }}<br>
+                    {{ form.password(size=32) }}<br>
+                </p>
+                <p>{{ form.submit() }}</p>
+            </form>
+        </div>
+    </div>            
+</div>
+{% endblock %}

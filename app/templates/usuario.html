@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>¡Bienvenido a UruGuía!</title>      
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-      <script src="{{ url_for('static',filename='script.js') }}"></script>
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <li>Logo</li>
-                <li>Opción</li>
-                <li>Opción</li>
-                <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
-                <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
-            </ul>
-        </nav>
-        <section>
-            <article>
+{% extends "base.html" %}
 
-            </article>
-            <article id="danger-zone">
-                <center>
-                    ATENCIÓN: ESTÁS ENTRANDO A LA ZONA DE PELIGRO. LA INTEGRIDAD DE TU CUENTA ESTÁ COMPROMETIDA SI INTERACTÚAS CON EL CONTENIDO DE ESTA ZONA. <br/>
-                    <button onclick="confirmarBorrarUsuario()">BORRAR USUARIO</button>
-                    <div id="confirmar-borrar-usuario">
-                        SI REALMENTE ESTÁS SEGURO DE QUERER BORRAR TU USUARIO, CONFIRMALO:
-                        <button><a href="{{ url_for('logout', id_usuario=session['id_usuario']) }}">QUIERO BORRAR MI USUARIO DEFINITIVAMENTE</a></button>
-                    </div>
-                </center>
-            </article>
-        </section>
-    <body>
-</html>
+{% block content %}
+<section id="usuario">
+    <article id="usuario-informacion">
+        Datos del usuario:<br/><br/>
+        <p>
+            Nombre: {{ session['nombre'] }}
+        </p>
+        <p>
+            Email: {{ session['email'] }}
+        </p>
+        <p>
+            Tipo de cuenta: {{ session['tipo'] }}
+        </p>
+        <p>
+            <button><a href="{{ url_for('modificarUsuario') }}">Modificar usuario</a></button>
+        </p>
+    </article>
+    <article id="danger-zone">
+        <center>
+            ATENCIÓN: ESTÁS ENTRANDO A LA ZONA DE PELIGRO. LA INTEGRIDAD DE TU CUENTA ESTÁ COMPROMETIDA SI INTERACTÚAS CON EL CONTENIDO DE ESTA ZONA. <br/>
+            <button onclick="confirmarBorrarUsuario()">BORRAR USUARIO</button>
+            <div id="confirmar-borrar-usuario">
+                SI REALMENTE ESTÁS SEGURO DE QUERER BORRAR TU USUARIO, CONFIRMALO:
+                <button><a href="{{ url_for('logout', id_usuario=session['id_usuario']) }}">QUIERO BORRAR MI USUARIO DEFINITIVAMENTE</a></button>
+            </div>
+        </center>
+    </article>
+</section>
+{% endblock %}

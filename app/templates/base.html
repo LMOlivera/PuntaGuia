@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-      
-    </head>
-    <body>
-        <div>
-            Microblog:
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('test') }}">Login</a>
-        </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <meta name="description" content="Guía turística para Uruguay.">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.ico') }}">
+        <title>{{ title }}</title>      
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+        <script src="{{ url_for('static',filename='script.js') }}"></script>
+      </head>
+      <body>
+          {% if session['logueado']==True %}
+          <nav>
+              <ul>
+                  <li>Logo</li>
+                  <li>Opción</li>
+                  <li>Opción</li>
+                  <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
+                  <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+              </ul>
+          </nav>
+          {% endif %}
         {% block content %}{% endblock %}
     </body>
 </html>

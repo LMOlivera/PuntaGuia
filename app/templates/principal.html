@@ -1,48 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>¡Bienvenido a UruGuía!</title>      
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-    </head>
-    <body>
-        <!--Se van a cargar 2 paginas distintas dependiendo el
-            tipo de usuario, hay que ver como hacemos eso-->
-        <nav>
-            <ul>
-                <li>Logo</li>
-                <li>Opción</li>
-                <li>Opción</li>
-                <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
-                <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
-            </ul>
-        </nav>
-        {% if session['tipo']=='turista' %}
-        <!--VENTANA TURISTA-->
-        <div id="clima-content">
-            <div id="clima-actual">
-                Clima
-            </div>
-            <div id="clima-semana">
+{% extends "base.html" %}
 
-            </div>
-        </div>
-        <div id="listado-categorías">
-            <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
-            <ul>
-                <li>Categoria</li>
-                <li>Categoria</li>
-                <li>Categoria</li>
-                <li>Categoria</li>
-            </ul>
-        </div>
-        {% else %}
-        <!--VENTANA EMPRESA-->
-        <div id="dialog-agregar">
-            Agregar
-        </div>
-        <div id="listar-establecimientos-lugares">
-            
-        </div>
-        {% endif %}
-    <body>
-</html>
+{% block content %}
+{% if session['tipo']=='turista' %}
+<!--VENTANA TURISTA-->
+<div id="clima-content">
+    <div id="clima-actual">
+        Clima
+    </div>
+    <div id="clima-semana">
+
+    </div>
+</div>
+<div id="listado-categorías">
+    <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
+    <ul>
+        <li>Categoria</li>
+        <li>Categoria</li>
+        <li>Categoria</li>
+        <li>Categoria</li>
+    </ul>
+</div>
+{% else %}
+<!--VENTANA EMPRESA-->
+<div id="dialog-agregar">
+    <button>
+            <a href="{{ url_for('agregar_lugar') }}">Agregar</a>
+    </button>
+</div>
+<div id="listar-establecimientos-lugares">
+    {% for lugar in lugares %}
+        <p>
+            {{ lugar['nombre'] }}
+            {{ lugar['descripcion'] }}
+            {{ lugar['ubicacion'] }}
+            {{ lugar['tipo'] }}
+            {{ lugar['horario'] }}
+            {{ lugar['fecha'] }}
+        </p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
