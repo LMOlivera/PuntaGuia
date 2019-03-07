@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, session, request
 from app import app
-from app.forms import LoginForm, RegisterForm, ModifyForm
+from app.forms import LoginForm, RegisterForm, ModifyForm, AgregarLugar
 import pymysql.cursors
 
 # Connect to the database
@@ -168,6 +168,54 @@ def modificarUsuario():
             return redirect('/')                    
     print(session["tipo"])
     return render_template('modificar_usuario.html', form=form, contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre']) 
+
+@app.route('/principal/agregar_lugar', methods=['GET','POST'])
+def agregar_lugar():
+    if not session.get('logueado'):
+        session.clear()
+        return redirect('/')
+    else:
+        form=AgregarLugar()
+        try:
+            if form.validate_on_submit():
+                nombre = form.nombre.data
+                descripcion = form.descripcion.data
+                ubicacion = form.ubicacion.data
+                categoria = form.categoria.data
+                tipo = form.tipo.data
+                horario = form.horario.data
+                fecha = form.fecha.data
+                with connection.cursor() as cursor:
+                    #INSERTA EN lugar
+                    query = """
+                            INSERT INTO lugar
+                            (nombre, descripcion, ubicacion, tipo, horario, fecha)
+                            VALUES
+                            (%s,%s,%s,%s,%s, %s)
+                            """
+                    cursor.execute(query,(nombre, descripcion, ubicacion, tipo, horario, fecha))
+                    
+                    #CONSIGUE ide DE lugar
+                    query = """
+                            SELECT ide FROM lugar
+                            WHERE nombre=%s
+                            """
+                    cursor.execute(query,(nombre))
+                    lugar = cursor.fetchone()
+
+                    #INSERTA EN pertenece_a BASANDOSE EN EL ide
+                    query = """
+                            INSERT INTO pertenece_a
+                            (ide, idc)
+                            VALUES
+                            (%s,%s)
+                            """
+                    cursor.execute(query,(lugar['ide'],categoria))
+                connection.commit()
+                return redirect("/principal")
+        except:
+            return redirect('/')      
+    return render_template('agregar_lugar.html', form=form)
 
 @app.route('/logout')
 def logout():

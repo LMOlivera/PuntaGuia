@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, TextAreaField, SelectField
 from wtforms.validators import DataRequired
 from wtforms.fields.html5 import EmailField
 from wtforms.widgets import PasswordInput
@@ -35,3 +35,17 @@ class ModifyForm(FlaskForm):
     # EMPRESA
     nombreEmpresa = StringField('Nombre de la empresa')
     submit = SubmitField("Guardar cambios")
+
+class AgregarLugar(FlaskForm):
+    nombre = StringField('Nombre del lugar')
+    descripcion = TextAreaField('Descripción')
+    # imagen?
+    ubicacion = StringField('Ubicación')
+
+    #CATEGORIA TIENE QUE SALIR DE LA BD LUEGO
+    categoria = SelectField(u'Categoría', choices=[('1', 'Categoria 1'), ('2', 'Categoria 2'), ('3', 'Categoria 3')])
+
+    tipo = RadioField('Es un', choices=[("Establecimiento","Establecimiento"),("Evento","Evento")])
+    horario = StringField('Días de servicio/Fecha del evento')
+    fecha = StringField('Fecha')
+    submit = SubmitField("Registrar")

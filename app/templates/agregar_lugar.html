@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>¡Bienvenido a UruGuía!</title>      
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    </head>
+    <body>
+        <!--Se van a cargar 2 paginas distintas dependiendo el
+            tipo de usuario, hay que ver como hacemos eso-->
+        <nav>
+            <ul>
+                <li>Logo</li>
+                <li>Opción</li>
+                <li>Opción</li>
+                <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
+                <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+        <center>Ingrese datos del establecimiento/evento<br/><br/></center>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.nombre.label }}: {{ form.nombre(size=32) }}<br>
+            </p>
+            <p>
+                {{ form.descripcion.label }}: {{ form.descripcion(size=100) }}<br>
+            </p>
+            <p>
+                {{ form.ubicacion.label }}: {{ form.ubicacion(size=32) }}<br>
+            </p>
+            <p>
+                {{ form.categoria.label }}: {{ form.categoria }}<br>
+            </p>
+            <p>
+                {{ form.tipo.label }}: {{ form.tipo }}<br>
+            </p>
+            <p>
+                {{ form.horario.label }}: {{ form.horario(size=32) }}<br>
+            </p>
+            <p>
+                <p>{{ form.submit() }}</p>
+            </p>
+        </form>
+    <body>
+</html>
