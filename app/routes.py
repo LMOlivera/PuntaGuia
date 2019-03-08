@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, session, request
-from app import app
+from app import app, logic
+from app.logic import clsSqlSelect, clsSqlInsert, clsSqlDelete
 from app.forms import LoginForm, RegisterForm, ModifyForm, AgregarLugar
 import pymysql.cursors
 
-# Connect to the database
+# En cuanto se termine el refactor hay que borrar esto
 connection = pymysql.connect(host='localhost',
                              user='root',
                              password='',
@@ -11,36 +12,33 @@ connection = pymysql.connect(host='localhost',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def bienvenido():
     if session.get('logueado'):
         return redirect('/principal')
     else:        
-        form = LoginForm() # Formulario de forms.py, se importa
-        if form.validate_on_submit(): #Al submitear data se corre esto
-            with connection.cursor() as cursor:
-                email=form.email.data
-                password=form.password.data
-                query = "SELECT id_usuario, email, nombre, tipo FROM usuario WHERE email=%s AND contrasena=%s"
-                cursor.execute(query,(email,password))
-                userdata = cursor.fetchone()
-                results = cursor.rowcount
-                if results==0:
-                    flash('Usuario y/o contraseña inválidos')                
-                    session['invalid_user']="true"               
-                    return redirect('/')
-                else:
-                    session.pop('invalid_user', None)
-                    session['logueado']=True
-                    session['id_usuario'] = userdata['id_usuario']
-                    session['email'] = userdata['email']
-                    session['nombre'] = userdata['nombre']
-                    session['tipo'] = userdata['tipo']
-                    return redirect('/principal')
+        form = LoginForm()
+        if form.validate_on_submit():
+            SqlSelect = clsSqlSelect.SqlSelect()
+            email=form.email.data
+            password=form.password.data
+            if SqlSelect.login(email, password):
+                session.pop('invalid_user', None)
+                session['logueado']=True
+                session['id_usuario'] = SqlSelect.userdata['id_usuario']
+                session['email'] = SqlSelect.userdata['email']
+                session['nombre'] = SqlSelect.userdata['nombre']
+                session['tipo'] = SqlSelect.userdata['tipo']
+                del SqlSelect
+                return redirect('/principal')
+            else:
+                flash('Usuario y/o contraseña inválidos')                
+                session['invalid_user']="true"               
+                return redirect('/')                    
     return render_template('bienvenido.html', title='¡Bienvenido a UruGuia!', form=form)
 
+# PENDIENTE
 @app.route('/index/registro', methods=['GET', 'POST'])
 def registro():
     if session.get('logueado'):
@@ -96,6 +94,7 @@ def registro():
                     print('Algo malo acaba de ocurrir: ' + NameError)         
     return render_template('registro.html', title="Registrar un nuevo usuario", form=form, tipo=nuevo['tipo'])
 
+# PENDIENTE
 @app.route('/principal')
 def index():
     if session.get('logueado'):
@@ -105,6 +104,7 @@ def index():
         return redirect('/')
     return render_template('principal.html', title="Página principal")
 
+# PENDIENTE
 @app.route('/principal/usuario')
 def usuario():
     if not session.get('logueado'):
@@ -112,6 +112,7 @@ def usuario():
         return redirect('/')
     return render_template('usuario.html', title='Datos de la cuenta')
 
+# PENDIENTE
 @app.route('/principal/usuario/modificar', methods=['GET','POST'])
 def modificarUsuario():
     if not session.get('logueado'):
@@ -185,33 +186,18 @@ def agregar_lugar():
                 tipo = form.tipo.data
                 horario = form.horario.data
                 fecha = form.fecha.data
-                with connection.cursor() as cursor:
-                    #INSERTA EN lugar
-                    query = """
-                            INSERT INTO lugar
-                            (nombre, descripcion, ubicacion, tipo, horario, fecha)
-                            VALUES
-                            (%s,%s,%s,%s,%s, %s)
-                            """
-                    cursor.execute(query,(nombre, descripcion, ubicacion, tipo, horario, fecha))
-                    
-                    #CONSIGUE ide DE lugar
-                    query = """
-                            SELECT ide FROM lugar
-                            WHERE nombre=%s
-                            """
-                    cursor.execute(query,(nombre))
-                    lugar = cursor.fetchone()
 
-                    #INSERTA EN pertenece_a BASANDOSE EN EL ide
-                    query = """
-                            INSERT INTO pertenece_a
-                            (ide, idc)
-                            VALUES
-                            (%s,%s)
-                            """
-                    cursor.execute(query,(lugar['ide'],categoria))
-                connection.commit()
+                #INSERTA EN lugar
+                SqlInsert = clsSqlInsert.SqlInsert()
+                SqlInsert.insertarLugar(nombre, descripcion, ubicacion, tipo, horario, fecha)
+                
+                #CONSIGUE ide DE lugar
+                SqlSelect = clsSqlSelect.SqlSelect()
+                ide = SqlSelect.conseguir_ide(nombre)
+
+                #INSERTA EN pertenece_a BASANDOSE EN EL ide
+                SqlInsert.insertar_pertenece_a(ide,categoria)
+
                 return redirect("/principal")
         except:
             return redirect('/')      
@@ -223,22 +209,9 @@ def logout():
         idu = request.args.to_dict()
         iduINT = int(idu['id_usuario'])
         ses = int(session['id_usuario'])
-        with connection.cursor() as cursor:
-            query = """
-                    DELETE FROM usuario WHERE id_usuario=%s
-                    """ 
-            cursor.execute(query,(ses))
-            if session['tipo']=='turista':
-                query = """
-                        DELETE FROM turista WHERE id=%s
-                        """ 
-                cursor.execute(query,(ses))
-            else:
-                query = """
-                    DELETE FROM empresa WHERE id=%s
-                    """ 
-                cursor.execute(query,(ses))
-        connection.commit()
+        if iduINT==ses:
+            SqlDelete = clsSqlDelete.SqlDelete()
+            SqlDelete.borrarUsuario(ses,session['tipo'])
     except:
         print("Logout")           
     session.clear()        
