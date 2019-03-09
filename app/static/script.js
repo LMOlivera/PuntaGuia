@@ -1,16 +1,16 @@
 function botonesCrearCuenta(){
-    if(document.contains(document.getElementById("welcome-hidden-button"))){
-        document.getElementById("welcome-hidden-button").setAttribute("id","welcome-show-button");
+    if(document.contains(document.getElementById("bienvenido-boton-escondido"))){
+        document.getElementById("bienvenido-boton-escondido").setAttribute("id","bienvenido-boton-mostrado");
     }else{
-        document.getElementById("welcome-show-button").setAttribute("id","welcome-hidden-button");
+        document.getElementById("bienvenido-boton-mostrado").setAttribute("id","bienvenido-boton-escondido");
     }  
 }
 
 function botonAlLogin(){
-    if(document.contains(document.getElementById("login-hidden"))){
-        document.getElementById("login-hidden").setAttribute("id","login-show");
+    if(document.contains(document.getElementById("login-escondido"))){
+        document.getElementById("login-escondido").setAttribute("id","login-mostrado");
     }else{
-        document.getElementById("login-show").setAttribute("id","login-hidden");
+        document.getElementById("login-mostrado").setAttribute("id","login-escondido");
     } 
 }
 

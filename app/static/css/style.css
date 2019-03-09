@@ -1,27 +1,36 @@
 /*CSS separado en partes para meter las interfaces rápido,
 hay que unirlo refactorizado. Tener todo separado afecta la
 performance de la aplicación.*/
-@import "welcome.css";
-@import "registro.css";
+@import "agregar_lugar.css";
+@import "bienvenido.css";
+@import "modificar_usuario.css";
 @import "principal.css";
+@import "registro.css";
 @import "usuario.css";
 
+/*El cuerpo del programa*/
 html, body {
     height: 80%;
     background-color: #4286f4;
 }
-nav
-{
+
+/*La barra de navegación*/
+nav{
     background-color: red;
     text-align: center;
 }
 
+
 nav ul{
-    display: flex;
-    list-style-type: none;
     margin: 0;
     padding: 0;
+    /*NO TOCAR*/
+    display: flex;
+    list-style-type: none;
+    /**********/
 }
+
+/*Elementos de la barra de navegación*/
 nav ul li{
     margin-left: 10px;
     margin-right: 10px;
