@@ -118,7 +118,7 @@ def agregar_lugar():
                 tipo = form.tipo.data
                 horario = form.horario.data
                 fecha = form.fecha.data
-
+                
                 #INSERTA EN lugar
                 SqlInsert = clsSqlInsert.SqlInsert()
                 SqlInsert.insertarLugar(nombre, descripcion, ubicacion, tipo, horario, fecha)
@@ -129,7 +129,6 @@ def agregar_lugar():
 
                 #INSERTA EN pertenece_a BASANDOSE EN EL ide
                 SqlInsert.insertar_pertenece_a(ide,categoria)
-
                 return redirect("/principal")
         except:
             return redirect('/')      
