@@ -117,7 +117,8 @@ CREATE TABLE IF NOT EXISTS `tiene` (
 CREATE TABLE IF NOT EXISTS `turista` (
   `id` int(11) NOT NULL,
   `edad` int(11) NOT NULL,
-  `pais_origen` varchar(100) NOT NULL
+  `pais_origen` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
