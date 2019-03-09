@@ -33,24 +33,27 @@ def bienvenido():
 def registro():
     if session.get('logueado'):
         return redirect('/principal')   
-    else:        
+    else:
         nuevo = request.args.to_dict()
         form = RegisterForm()
         if form.validate_on_submit():
             try:
                 SqlSelect = clsSqlSelect.SqlSelect()                
                 SqlInsert = clsSqlInsert.SqlInsert()
+                print(SqlSelect.conseguir_ultimo_idMasUno())
                 SqlInsert.crearUsuario(form.email.data,
-                                       form.nombre.data,
-                                       form.password.data,
-                                       nuevo['tipo'],
-                                       SqlSelect.conseguir_id(email),
-                                       form.edad.data,
-                                       form.pais.data,
-                                       form.nombreEmpresa.data)
+                                        form.nombre.data,
+                                        form.password.data,
+                                        nuevo['tipo'],
+                                        SqlSelect.conseguir_ultimo_idMasUno(),
+                                        form.edad.data,
+                                        form.pais.data,
+                                        form.nombreEmpresa.data
+                                        )
                 session.clear()
                 return redirect('/index') 
             except:    
+                print('Algo malo pasó')
                 return redirect('/index')
     return render_template('registro.html', title="Registrar un nuevo usuario", form=form, tipo=nuevo['tipo'])
 

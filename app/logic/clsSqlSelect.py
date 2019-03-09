@@ -80,7 +80,22 @@ class SqlSelect:
             SELECT id_usuario FROM usuario
             WHERE email=%s
             """
-            idU = cursor.execute(query,(email))
+            cursor.execute(query,(email))
+            idU = cursor.fetchone()
             return idU
+        self.conexion.commit()
+        pass
+
+    def conseguir_ultimo_idMasUno(self):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT id_usuario
+                    FROM usuario
+                    ORDER BY id_usuario
+                    DESC LIMIT 1
+                    """
+            cursor.execute(query)
+            idU = cursor.fetchone()
+            return (idU['id_usuario']+1)
         self.conexion.commit()
         pass
