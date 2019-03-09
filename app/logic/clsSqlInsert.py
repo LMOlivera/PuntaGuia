@@ -33,3 +33,33 @@ class SqlInsert:
             cursor.execute(query,(ide, idc))
         self.conexion.commit()
         pass
+
+    def crearUsuario(self, email, nombre, password, tipo, id, edad, pais, nombreEmpresa):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    INSERT INTO usuario
+                    (email,nombre,contrasena,tipo)
+                    VALUES
+                    (%s,%s,%s,%s)
+                    """
+            cursor.execute(query,(email,nombre,password,tipo))
+
+            if tipo=='turista':
+                query = """
+                INSERT INTO turista
+                (id,edad,pais_origen)
+                VALUES
+                (%s,%s,%s)
+                """
+                cursor.execute(query,(id,edad,pais))
+            else:                
+                query = """
+                INSERT INTO empresa
+                (id,nombre)
+                VALUES
+                (%s,%s)
+                """
+                cursor.execute(query,(id,nombreEmpresa))
+        self.conexion.commit()
+        pass
+

@@ -1,16 +1,7 @@
 from flask import render_template, flash, redirect, session, request
 from app import app, logic
-from app.logic import clsSqlSelect, clsSqlInsert, clsSqlDelete
+from app.logic import clsSqlInsert, clsSqlDelete, clsSqlUpdate, clsSqlSelect
 from app.forms import LoginForm, RegisterForm, ModifyForm, AgregarLugar
-import pymysql.cursors
-
-# En cuanto se termine el refactor hay que borrar esto
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password='',
-                             db='uruguia_bd_test',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -38,7 +29,6 @@ def bienvenido():
                 return redirect('/')                    
     return render_template('bienvenido.html', title='¡Bienvenido a UruGuia!', form=form)
 
-# PENDIENTE
 @app.route('/index/registro', methods=['GET', 'POST'])
 def registro():
     if session.get('logueado'):
@@ -48,63 +38,39 @@ def registro():
         form = RegisterForm()
         if form.validate_on_submit():
             try:
-                with connection.cursor() as cursor:
-                    email = form.email.data
-                    nombre = form.nombre.data
-                    password = form.password.data
-                    tipo = nuevo['tipo']
-                    query = """
-                    INSERT INTO usuario
-                    (email,nombre,contrasena,tipo)
-                    VALUES
-                    (%s,%s,%s,%s)
-                    """
-                    cursor.execute(query,(email,nombre,password,tipo))
-                    query = """
-                    SELECT id_usuario FROM usuario
-                    WHERE email=%s
-                    """
-                    cursor.execute(query,(email))
-                    userdata = cursor.fetchone()
-                    id_usuario=userdata['id_usuario']
-
-                    if nuevo['tipo']=='turista':
-                        edad = form.edad.data
-                        pais = form.pais.data
-                        query = """
-                        INSERT INTO turista
-                        (id,edad,pais_origen)
-                        VALUES
-                        (%s,%s,%s)
-                        """
-                        cursor.execute(query,(id_usuario,edad,pais))
-                    else:
-                        nombreEmpresa = form.nombreEmpresa.data
-                        query = """
-                        INSERT INTO empresa
-                        (id,nombre)
-                        VALUES
-                        (%s,%s)
-                        """
-                        cursor.execute(query,(id_usuario,nombreEmpresa))
-                connection.commit()
+                SqlSelect = clsSqlSelect.SqlSelect()                
+                SqlInsert = clsSqlInsert.SqlInsert()
+                SqlInsert.crearUsuario(form.email.data,
+                                       form.nombre.data,
+                                       form.password.data,
+                                       nuevo['tipo'],
+                                       SqlSelect.conseguir_id(email),
+                                       form.edad.data,
+                                       form.pais.data,
+                                       form.nombreEmpresa.data)
                 session.clear()
                 return redirect('/index') 
-            except NameError:    
-                    print('Algo malo acaba de ocurrir: ' + NameError)         
+            except:    
+                return redirect('/index')
     return render_template('registro.html', title="Registrar un nuevo usuario", form=form, tipo=nuevo['tipo'])
 
-# PENDIENTE
 @app.route('/principal')
 def index():
     if session.get('logueado'):
-        print('ok')
+        if session['tipo']=='turista':
+            listalugares={}
+            pass
+        else:
+            try:
+                SqlSelect = clsSqlSelect.SqlSelect()
+                listalugares = SqlSelect.listarLugares(session['id_usuario'])
+            except:
+                listalugares={}      
     else:
         session.clear()
         return redirect('/')
-    return render_template('principal.html', title="Página principal")
+    return render_template('principal.html', title="Página principal", lugares=listalugares)
 
-# PENDIENTE
 @app.route('/principal/usuario')
 def usuario():
     if not session.get('logueado'):
@@ -112,7 +78,6 @@ def usuario():
         return redirect('/')
     return render_template('usuario.html', title='Datos de la cuenta')
 
-# PENDIENTE
 @app.route('/principal/usuario/modificar', methods=['GET','POST'])
 def modificarUsuario():
     if not session.get('logueado'):
@@ -127,48 +92,15 @@ def modificarUsuario():
                 edad = form.edad.data
                 pais = form.pais.data
                 nombreEmpresa = form.nombreEmpresa.data
-                with connection.cursor() as cursor:
-                    query="""
-                        UPDATE usuario
-                        SET nombre=%s,
-                            contrasena=%s
-                        WHERE id_usuario=""" + str(session['id_usuario'])
-                    cursor.execute(query,(nombre,password))
-                    if session['tipo']=='turista':
-                        query="""
-                            UPDATE turista
-                            SET edad=%s,
-                                pais_origen=%s
-                            WHERE id=""" + str(session['id_usuario'])
-                        cursor.execute(query,(edad,pais))
-                    else:
-                        query="""
-                            UPDATE empresa
-                            SET nombre=%s
-                            WHERE id=""" + str(session['id_usuario'])
-                        cursor.execute(query,(nombreEmpresa))
-                connection.commit()
+                SqlUpdate = clsSqlUpdate.SqlUpdate()
+                SqlUpdate.actualizarUsuario(nombre, password, session['id_usuario'], session['tipo'], edad, pais, nombreEmpresa)
                 session['nombre'] = nombre
                 return redirect("/principal/usuario")
-            with connection.cursor() as cursor:
-                query="SELECT nombre, contrasena FROM usuario WHERE id_usuario=" + str(session['id_usuario'])
-                cursor.execute(query)
-                usuario=cursor.fetchone()
-                if session['tipo']=='turista':
-                    query="SELECT edad, pais_origen FROM turista WHERE id=" + str(session['id_usuario'])
-                    cursor.execute(query)
-                    turista=cursor.fetchone()
-                    empresa={"nombre":"Ninguno"}
-                else:
-                    query="SELECT nombre FROM empresa WHERE id=" + str(session['id_usuario'])
-                    cursor.execute(query)
-                    empresa=cursor.fetchone()
-                    turista={"edad":"0", "pais_origen":"Ninguno"}
-            connection.commit()
+            SqlSelect = clsSqlSelect.SqlSelect()
+            userdata = SqlSelect.listarDatosUsuario(session['id_usuario'], session['tipo'])
         except:
-            return redirect('/')                    
-    print(session["tipo"])
-    return render_template('modificar_usuario.html', title="Modificar datos de la cuenta", form=form, contrasena=usuario['contrasena'], edad=turista['edad'], pais=turista['pais_origen'], nombreEmpresa=empresa['nombre']) 
+            return redirect('/')
+    return render_template('modificar_usuario.html', title="Modificar datos de la cuenta", form=form, contrasena=userdata['contrasena'], edad=userdata['edad'], pais=userdata['pais_origen'], nombreEmpresa=userdata['nombre']) 
 
 @app.route('/principal/agregar_lugar', methods=['GET','POST'])
 def agregar_lugar():
