@@ -129,6 +129,10 @@ def agregar_lugar():
 
                 #INSERTA EN pertenece_a BASANDOSE EN EL ide
                 SqlInsert.insertar_pertenece_a(ide,categoria)
+
+                #INSERTA EN tiene
+                SqlInsert.insertar_tiene(ide,session['id_usuario'])
+
                 return redirect("/principal")
         except:
             return redirect('/')      

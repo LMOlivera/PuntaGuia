@@ -33,6 +33,18 @@ class SqlInsert:
             cursor.execute(query,(ide, idc))
         self.conexion.commit()
         pass
+    
+    def insertar_tiene(self, ide, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    INSERT INTO tiene
+                    (ide, id)
+                    VALUES
+                    (%s,%s)
+                    """    
+            cursor.execute(query,(ide, id))
+        self.conexion.commit()
+        pass
 
     def crearUsuario(self, email, nombre, password, tipo, id, edad, pais, nombreEmpresa):
         with self.conexion.cursor() as cursor:
