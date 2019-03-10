@@ -62,8 +62,7 @@ def index():
     if session.get('logueado'):
         SqlSelect = clsSqlSelect.SqlSelect()
         if session['tipo']=='turista':
-
-            listalugares={}
+            listalugares = SqlSelect.conseguir_categorias()
             pass
         else:
             try:
@@ -74,6 +73,20 @@ def index():
         session.clear()
         return redirect('/')
     return render_template('principal.html', title="Página principal", lugares=listalugares)
+
+@app.route("/principal/categoria")
+def categoria():
+    if not session.get('logueado'):
+        session.clear()
+        return redirect('/')
+    else:
+        try:
+            categoria = request.args.to_dict()
+            SqlSelect = clsSqlSelect.SqlSelect()
+            lugares = SqlSelect.conseguir_lugares(categoria['categoria'])
+        except:
+            return redirect("/principal")        
+    return render_template('categoria.html', title='Explorando', lugares=lugares)
 
 @app.route('/principal/usuario')
 def usuario():

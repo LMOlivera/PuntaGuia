@@ -3,6 +3,7 @@ hay que unirlo refactorizado. Tener todo separado afecta la
 performance de la aplicación.*/
 @import "agregar_lugar.css";
 @import "bienvenido.css";
+@import "categoria.css";
 @import "eliminar_lugar.css";
 @import "modificar_lugar.css";
 @import "modificar_usuario.css";

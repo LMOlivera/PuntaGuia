@@ -14,10 +14,9 @@
 <div id="listado-categorías">
     <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
     <ul>
-        <li>Categoria</li>
-        <li>Categoria</li>
-        <li>Categoria</li>
-        <li>Categoria</li>
+    {% for lugar in lugares %}
+        <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
+    {% endfor %}
     </ul>
 </div>
 {% else %}

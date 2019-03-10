@@ -159,3 +159,20 @@ class SqlSelect:
         self.conexion.commit()
         pass
 
+    def conseguir_lugares(self, categoria):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
+                    FROM lugar AS l
+                    INNER JOIN pertenece_a AS p ON l.ide = p.ide
+                    WHERE p.idc=%s
+                    ORDER BY l.ide
+                    """
+            cursor.execute(query,(categoria))
+            lugares = cursor.fetchall()
+            return lugares
+        self.conexion.commit()
+        pass
+
+        
+

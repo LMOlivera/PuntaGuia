@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+    Categoría:
+</center><br>
+{% for lugar in lugares %}
+    <p>
+        {{ lugar['nombre'] }}<br>
+        {{ lugar['descripcion'] }}
+        {{ lugar['ubicacion'] }}
+        {{ lugar['horario'] }}
+        {% if lugar['tipo']=='evento' %}
+        {{ lugar['fecha'] }}
+        {% endif %}    
+    </p>
+{% endfor %}
+
+</form>
+{% endblock %}
