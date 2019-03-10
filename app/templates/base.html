@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+    <!--
+        Base es el html padre, del que el resto hereda. No es necesrio que lo toques a menos que vayas a modificar el "nav" (barra de navegación).
+    -->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -13,9 +16,9 @@
           {% if session['logueado']==True %}
           <nav>
               <ul>
-                  <li>Logo</li>
-                  <li>Opción</li>
-                  <li>Opción</li>
+                  <li><a href="{{ url_for('index') }}">Logo</a></li>
+                  <li><a href="{{ url_for('index') }}">Página principal</a></li>
+                  <!--Se pueden poner cosas nuevas aquí si se ve necesario-->
                   <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
                   <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
               </ul>

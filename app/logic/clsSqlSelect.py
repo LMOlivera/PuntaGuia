@@ -99,3 +99,80 @@ class SqlSelect:
             return (idU['id_usuario']+1)
         self.conexion.commit()
         pass
+
+    def conseguir_tabla_tiene(self, id_lugar, id_usuario):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide, id
+                    FROM tiene
+                    WHERE ide=%s AND id=%s
+                    """
+            cursor.execute(query,(id_lugar, id_usuario))
+            tiene = cursor.fetchone()
+            return tiene
+        self.conexion.commit()
+        pass
+
+    def conseguir_datos_lugar(self, nombre):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide,
+                           nombre,
+                           descripcion,
+                           ubicacion,
+                           tipo,
+                           horario,
+                           fecha
+                    FROM lugar
+                    WHERE nombre=%s
+                    """
+            cursor.execute(query,(nombre))
+            lugar = cursor.fetchone()
+            return lugar
+        self.conexion.commit()
+        pass
+    
+    def conseguir_datos_pertenece_a(self, ide):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide,
+                           idc
+                    FROM pertenece_a
+                    WHERE ide=%s
+                    """
+            cursor.execute(query,(ide))
+            pertenece_a = cursor.fetchone()
+            return pertenece_a
+        self.conexion.commit()
+        pass
+    
+    def conseguir_categorias(self):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT idc,
+                           nombre
+                    FROM categoria
+                    """
+            cursor.execute(query)
+            categorias = cursor.fetchall()
+            return categorias
+        self.conexion.commit()
+        pass
+
+    def conseguir_lugares(self, categoria):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
+                    FROM lugar AS l
+                    INNER JOIN pertenece_a AS p ON l.ide = p.ide
+                    WHERE p.idc=%s
+                    ORDER BY l.ide
+                    """
+            cursor.execute(query,(categoria))
+            lugares = cursor.fetchall()
+            return lugares
+        self.conexion.commit()
+        pass
+
+        
+

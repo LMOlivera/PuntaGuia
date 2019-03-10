@@ -17,10 +17,13 @@
         {{ form.categoria.label }}: {{ form.categoria }}<br>
     </p>
     <p>
-        {{ form.tipo.label }}: {{ form.tipo }}<br>
+        {{ form.tipo.label }}: {{ form.tipo }}
     </p>
     <p>
         {{ form.horario.label }}: {{ form.horario(size=32) }}<br>
+    </p>
+    <p>
+        {{ form.fecha.label }}: {{ form.fecha(size=32) }}<br>
     </p>
     <p>
         <p>{{ form.submit() }}</p>

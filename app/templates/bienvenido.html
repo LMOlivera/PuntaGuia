@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id='welcome-container'>
-    <div id="welcome-content">
-        <div id="welcome-pet">
+<div id='bienvenido-container'>
+    <div id="bienvenido-contenido">
+        <div id="bienvenido-mascota">
             Imágen de posible mascota.
         </div>
-        <div id='welcome-login-choice'>
+        <div id='bienvenido-login-eleccion'>
             <button onclick="botonesCrearCuenta()">
                 Soy nuevo en esta plataforma.
             </button>
-            <div id="welcome-hidden-button">
+            <div id="bienvenido-boton-escondido">
                 <a href="{{ url_for('registro', tipo='turista') }}"><!--<a href="/index/registro">-->
                     <button>Soy un turista</button>
                 </a>
@@ -19,17 +19,14 @@
                 </a>                              
                 </button>
             </div>
-            <button id="btnLogin" onclick="botonAlLogin()">
+            <button onclick="botonAlLogin()">
                 Ya tengo una cuenta.
             </button>
             {% if session['invalid_user'] %}
-            <form id="login-show" action="" method="post">
+            <form id="login-mostrado" action="" method="post">
             {% else %}
-            <form id="login-hidden" action="" method="post">
-            {% endif %}
-                <!--
-                    form.hidden_tag() es para ataques CSRF. Con esto y la SECRET_KEY definida Flask se encarga de protegerte.
-                -->    
+            <form id="login-escondido" action="" method="post">
+            {% endif %} 
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                     <p class="error">

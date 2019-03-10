@@ -1,14 +1,12 @@
 /* Este es un código desprolijo para la parte de Bienvenida del programa,
 lo mejor sería hacer que las cosas se centren y probablemente acomodarlo
 al resto del CSS sin tener que dejarlo aparte (me explico?).*/
-#welcome-container{
+#bienvenido-container{
     margin: 3vw;
     height: 100%;
-    background-color: orange;
 }
 
-#welcome-content
-{
+#bienvenido-contenido{
     background-color: red;
     height: 100%;
     display: flex;
@@ -17,12 +15,12 @@ al resto del CSS sin tener que dejarlo aparte (me explico?).*/
     align-items: center;
 }
 
-#welcome-pet{
+#bienvenido-mascota{
     background-color: white;
     border-radius: 30%;
 }
 
-#welcome-login-choice{
+#bienvenido-login-eleccion{
     background-color: azure;
     border: 3px white solid;
     border-radius: 10%;
@@ -36,7 +34,6 @@ al resto del CSS sin tener que dejarlo aparte (me explico?).*/
     font-weight: bold;      
 }
 
-/*Button fix?*/
 button{
     width: 100%;
     min-width: 50px;
@@ -44,19 +41,19 @@ button{
     margin: 10px;
 }
 
-#welcome-hidden-button{
+#bienvenido-boton-escondido{
     display: none;
 }
 
-#welcome-show-button{
+#bienvenido-boton-mostrado{
     display: block;
 }
 
-#login-hidden{
+#login-escondido{
     display: none;
 }
 
-#login-show{
+#login-mostrado{
     display: block;
 }
 /* FIN DE CSS EXCLUSIVO DE BIENVENIDA, REFACTORIZAR POR DIOS*/

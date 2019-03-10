@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 3.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-03-2019 a las 23:13:49
--- Versión del servidor: 5.7.24
--- Versión de PHP: 7.2.14
+-- Servidor: localhost
+-- Tiempo de generación: 10-03-2019 a las 15:53:03
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `uruguia_bd_test`
@@ -65,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 
 INSERT INTO `empresa` (`id`, `nombre`) VALUES
 (3, 'Empresa Falsa 1'),
-(4, 'Empresa Falsa 2');
+(4, 'Empresa Falsa 2'),
+(5, '123');
 
 -- --------------------------------------------------------
 
@@ -84,7 +83,16 @@ CREATE TABLE IF NOT EXISTS `lugar` (
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`ide`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `lugar`
+--
+
+INSERT INTO `lugar` (`ide`, `nombre`, `descripcion`, `imagen`, `ubicacion`, `tipo`, `horario`, `fecha`) VALUES
+(5, 'Establecimiento Empresa 3', 'Una prueba para la base de datos', NULL, 'Algun lugar', 'Establecimiento', '0', '0000-00-00'),
+(6, 'Establecimiento Empresa 4', 'Un insert mas a la base de datos de prueba', NULL, 'Aquí', 'Establecimiento', '00', '0000-00-00'),
+(7, 'Evento ficticio', 'Creado para ser data de prueba', NULL, 'La base de datos', 'Evento', '00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -97,6 +105,15 @@ CREATE TABLE IF NOT EXISTS `pertenece_a` (
   `idc` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `pertenece_a`
+--
+
+INSERT INTO `pertenece_a` (`ide`, `idc`) VALUES
+(5, 1),
+(6, 3),
+(7, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +124,15 @@ CREATE TABLE IF NOT EXISTS `tiene` (
   `ide` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tiene`
+--
+
+INSERT INTO `tiene` (`ide`, `id`) VALUES
+(5, 3),
+(6, 4),
+(7, 5);
 
 -- --------------------------------------------------------
 
@@ -126,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `turista` (
 --
 
 INSERT INTO `turista` (`id`, `edad`, `pais_origen`) VALUES
-(1, 25, 'Tangamandapio'),
+(1, 55, 'Tangamandapio'),
 (2, 31, 'Nosedonde');
 
 -- --------------------------------------------------------
@@ -144,17 +170,18 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
-(1, 'test1@test1.com', 'Fulano de Tal', 'contrasenia', NULL, 'turista'),
-(2, 'test2@test2.com', 'Sultano de Tal', 'pass', NULL, 'turista'),
-(3, 'test3@test3.com', 'Senior de Negocios', 'passempresa', NULL, 'empresa'),
-(4, 'test4@test4.com', 'Seniora de Empresa', 'passempresa2', NULL, 'empresa');
+(1, 'test1@test1.com', 'Fulano de Tal', '123', NULL, 'turista'),
+(2, 'test2@test2.com', 'Sultano de Tal', '123', NULL, 'turista'),
+(3, 'test3@test3.com', 'Senior de Negocios', '123', NULL, 'empresa'),
+(4, 'test4@test4.com', 'Seniora de Empresa', '123', NULL, 'empresa'),
+(5, 'otroyo@otroyo.com', 'Mateo el empresario', '123', NULL, 'empresa');
 
 -- --------------------------------------------------------
 

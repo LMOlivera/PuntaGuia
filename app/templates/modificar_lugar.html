@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>Datos del establecimiento/evento<br/><br/></center>
+<p>
+    INFORMACION DEL LUGAR A MODIFICAR
+</p><br>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.nombre.label }}: {{ form.nombre(value=lugar['nombre']) }}<br>
+    </p>
+    <p>
+        {{ form.descripcion.label }}: {{ form.descripcion(value=lugar['descripcion']) }}<br>
+    </p>
+    <p>
+        {{ form.categoria.label }}: {{ form.categoria(value=pertenece_a['idc']) }}<br>
+    </p>
+    <p>
+        {{ form.ubicacion.label }}: {{ form.ubicacion(value=lugar['ubicacion']) }}<br>
+    </p>
+    <p>
+        {{ form.tipo.label }}: {{ form.tipo(value=lugar['tipo']) }}<br>
+    </p>
+    <p>
+        {{ form.horario.label }}: {{ form.horario(value=lugar['horario']) }}<br>
+    </p>
+    <p>
+        {{ form.fecha.label }}: {{ form.fecha(value=lugar['fecha']) }}<br>
+    </p>
+    <p>
+        <p>{{ form.submit(value='Modificar') }}</p>
+    </p>
+</form>
+</form>
+{% endblock %}

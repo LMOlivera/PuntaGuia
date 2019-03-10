@@ -14,10 +14,9 @@
 <div id="listado-categorías">
     <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
     <ul>
-        <li>Categoria</li>
-        <li>Categoria</li>
-        <li>Categoria</li>
-        <li>Categoria</li>
+    {% for lugar in lugares %}
+        <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
+    {% endfor %}
     </ul>
 </div>
 {% else %}
@@ -36,6 +35,8 @@
             {{ lugar['tipo'] }}
             {{ lugar['horario'] }}
             {{ lugar['fecha'] }}
+            <button><a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}">Modificar</a></button>
+            <button><a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}">Eliminar</a></button>
         </p>
     {% endfor %}
 </div>

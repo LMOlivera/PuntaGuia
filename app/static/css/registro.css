@@ -1,11 +1,9 @@
-#registro-container
-{
+#registro-container{
     margin: 3vw;
     height: 100%;
 }
 
-#registro-content
-{
+#registro-content{
     background-color: red;
     height: 100%;
     display: flex;
@@ -14,8 +12,7 @@
     align-items: center;
 }
 
-#registro-pet
-{
+#registro-pet{
     align-self: flex-start;
 }
 
