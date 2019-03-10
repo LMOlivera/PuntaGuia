@@ -28,14 +28,14 @@ Para poder usar el sistema se debe tener instalado:
 ### Base de datos
 La base de datos del proyecto está hecha en MySQL. Se debe descargar [WAMPServer](http://www.wampserver.es/#home), entrar en phpMyAdmin, crear una base de datos (por ejemplo, UruGuia_bd_test), entrar a ella y en la pestaña de SQL ingresar el contenido del archivo que se encuentra en la carpeta "Base de Datos".
 
-Ahora, para poder hacer que la aplicación Flask se conecte a WAMPServer, se debe editar el archivo "routes.py". El objeto "connection" llama a una función con una serie de parámetros los cuales se deben modificar para poder conectarse:
+Ahora, para poder hacer que la aplicación Flask se conecte a WAMPServer, se debe editar los 4 archivos Sql (Insert, Update, Delete y Select) dentro de la carpeta /app/logic. El objeto "conexion" llama a una función con una serie de parámetros los cuales se deben modificar para poder conectarse:
 ```python
-connection = pymysql.connect(host='localhost', 
-                             user='root', #Nombre del usuario que usamos para conectarnos a WAMPServer, 'root' por defecto.
-                             password='', #Si el usuario anterior tiene contraseña debemos escribirla aquí
-                             db='uruguia_bd_test', #Nombre de la base de datos dentro de WAMPServer
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+self.conexion = pymysql.connect(host='localhost',
+                                user='root', #Nombre del usuario que usamos para conectarnos a WAMPServer, 'root' por defecto.
+                                password='', #Si el usuario anterior tiene contraseña debemos escribirla aquí
+                                db='uruguia_bd_test', #Nombre de la base de datos dentro de WAMPServer
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
 ```
 Cambiando esos 3 parámetros haremos a Flask compatible con WAMPServer.
 
