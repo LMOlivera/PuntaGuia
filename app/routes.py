@@ -60,12 +60,13 @@ def registro():
 @app.route('/principal')
 def index():
     if session.get('logueado'):
+        SqlSelect = clsSqlSelect.SqlSelect()
         if session['tipo']=='turista':
+
             listalugares={}
             pass
         else:
             try:
-                SqlSelect = clsSqlSelect.SqlSelect()
                 listalugares = SqlSelect.listarLugares(session['id_usuario'])
             except:
                 listalugares={}      
@@ -112,6 +113,9 @@ def agregar_lugar():
         return redirect('/')
     else:
         form=Lugar()
+        SqlSelect = clsSqlSelect.SqlSelect()
+        categorias = SqlSelect.conseguir_categorias()
+        form.categoria.choices = [(categoria['idc'], categoria['nombre']) for categoria in categorias]
         try:
             if form.validate_on_submit():
                 nombre = form.nombre.data
@@ -127,7 +131,6 @@ def agregar_lugar():
                 SqlInsert.insertarLugar(nombre, descripcion, ubicacion, tipo, horario, fecha)
                 
                 #CONSIGUE ide DE lugar
-                SqlSelect = clsSqlSelect.SqlSelect()
                 ide = SqlSelect.conseguir_ide(nombre)
 
                 #INSERTA EN pertenece_a BASANDOSE EN EL ide
@@ -176,6 +179,8 @@ def modificar_lugar():
             lugar = SqlSelect.conseguir_datos_lugar(nom['nombre'])
             pertenece_a = SqlSelect.conseguir_datos_pertenece_a(lugar['ide'])
             form = Lugar(categoria=pertenece_a['idc'], tipo=lugar['tipo'], descripcion=lugar['descripcion'])
+            categorias = SqlSelect.conseguir_categorias()
+            form.categoria.choices = [(categoria['idc'], categoria['nombre']) for categoria in categorias]
             if request.method=='POST':
                 SqlUpdate = clsSqlUpdate.SqlUpdate()
                 SqlUpdate.actualizarLugarYpertenece_a(form.nombre.data,

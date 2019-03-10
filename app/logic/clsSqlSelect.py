@@ -146,3 +146,16 @@ class SqlSelect:
         self.conexion.commit()
         pass
     
+    def conseguir_categorias(self):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT idc,
+                           nombre
+                    FROM categoria
+                    """
+            cursor.execute(query)
+            categorias = cursor.fetchall()
+            return categorias
+        self.conexion.commit()
+        pass
+

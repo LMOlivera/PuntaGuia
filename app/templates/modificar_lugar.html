@@ -14,6 +14,9 @@
         {{ form.descripcion.label }}: {{ form.descripcion(value=lugar['descripcion']) }}<br>
     </p>
     <p>
+        {{ form.categoria.label }}: {{ form.categoria(value=pertenece_a['idc']) }}<br>
+    </p>
+    <p>
         {{ form.ubicacion.label }}: {{ form.ubicacion(value=lugar['ubicacion']) }}<br>
     </p>
     <p>
@@ -24,9 +27,6 @@
     </p>
     <p>
         {{ form.fecha.label }}: {{ form.fecha(value=lugar['fecha']) }}<br>
-    </p>
-    <p>
-        {{ form.categoria.label }}: {{ form.categoria(value=pertenece_a['idc']) }}<br>
     </p>
     <p>
         <p>{{ form.submit(value='Modificar') }}</p>
