@@ -36,7 +36,7 @@
             {{ lugar['tipo'] }}
             {{ lugar['horario'] }}
             {{ lugar['fecha'] }}
-            <button>Modificar</button>
+            <button><a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}">Modificar</a></button>
             <button><a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}">Eliminar</a></button>
         </p>
     {% endfor %}

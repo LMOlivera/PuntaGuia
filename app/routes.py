@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, session, request
 from app import app, logic
 from app.logic import clsSqlInsert, clsSqlDelete, clsSqlUpdate, clsSqlSelect
-from app.forms import LoginForm, RegisterForm, ModifyForm, AgregarLugar
+from app.forms import LoginForm, RegisterForm, ModifyForm, Lugar
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -111,7 +111,7 @@ def agregar_lugar():
         session.clear()
         return redirect('/')
     else:
-        form=AgregarLugar()
+        form=Lugar()
         try:
             if form.validate_on_submit():
                 nombre = form.nombre.data
@@ -163,6 +163,34 @@ def eliminar_lugar():
             print('Algo malo ocurrió')
             return redirect('/principal')
     return render_template('eliminar_lugar.html', title="Eliminar establecimiento/evento", ide=ide) 
+
+@app.route('/principal/modificar_lugar', methods=['GET','POST'])
+def modificar_lugar():
+    if not session.get('logueado'):
+        session.clear()
+        return redirect('/')
+    else:
+        try:
+            nom = request.args.to_dict()
+            SqlSelect = clsSqlSelect.SqlSelect()
+            lugar = SqlSelect.conseguir_datos_lugar(nom['nombre'])
+            pertenece_a = SqlSelect.conseguir_datos_pertenece_a(lugar['ide'])
+            form = Lugar(categoria=pertenece_a['idc'], tipo=lugar['tipo'], descripcion=lugar['descripcion'])
+            if request.method=='POST':
+                SqlUpdate = clsSqlUpdate.SqlUpdate()
+                SqlUpdate.actualizarLugarYpertenece_a(form.nombre.data,
+                                                      form.descripcion.data,
+                                                      form.ubicacion.data,
+                                                      form.tipo.data,
+                                                      form.horario.data,
+                                                      form.fecha.data,
+                                                      form.categoria.data,
+                                                      pertenece_a['ide'])
+                return redirect('/principal')
+        except:
+            print('Error')
+            return redirect('/principal')
+    return render_template('modificar_lugar.html', title='Modificar establecimiento/evento', form=form, lugar=lugar, pertenece_a=pertenece_a) 
 
 @app.route('/logout')
 def logout():

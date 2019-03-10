@@ -112,3 +112,37 @@ class SqlSelect:
             return tiene
         self.conexion.commit()
         pass
+
+    def conseguir_datos_lugar(self, nombre):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide,
+                           nombre,
+                           descripcion,
+                           ubicacion,
+                           tipo,
+                           horario,
+                           fecha
+                    FROM lugar
+                    WHERE nombre=%s
+                    """
+            cursor.execute(query,(nombre))
+            lugar = cursor.fetchone()
+            return lugar
+        self.conexion.commit()
+        pass
+    
+    def conseguir_datos_pertenece_a(self, ide):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide,
+                           idc
+                    FROM pertenece_a
+                    WHERE ide=%s
+                    """
+            cursor.execute(query,(ide))
+            pertenece_a = cursor.fetchone()
+            return pertenece_a
+        self.conexion.commit()
+        pass
+    

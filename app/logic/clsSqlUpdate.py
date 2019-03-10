@@ -35,3 +35,23 @@ class SqlUpdate:
                 pass
         self.conexion.commit()
         pass
+        
+    def actualizarLugarYpertenece_a(self, nombre, descripcion, ubicacion, tipo, horario, fecha, idc, ide):
+        with self.conexion.cursor() as cursor:
+            query="""
+                UPDATE lugar
+                SET nombre=%s,
+                    descripcion=%s,
+                    ubicacion=%s,
+                    tipo=%s,
+                    horario=%s,
+                    fecha=%s
+                WHERE ide=""" + str(ide)
+            cursor.execute(query,(nombre, descripcion, ubicacion, tipo, horario, fecha))
+            query="""
+                UPDATE pertenece_a
+                SET idc=%s
+                WHERE ide=""" + str(ide)
+            cursor.execute(query,(idc))
+        self.conexion.commit()
+        pass
