@@ -38,5 +38,9 @@ class SqlDelete:
                     DELETE FROM lugar WHERE ide=%s
                     """ 
             cursor.execute(query,(ide))
+            query = """
+                    DELETE FROM pertence_a WHERE ide=%s
+                    """ 
+            cursor.execute(query,(ide))
         self.conexion.commit()
         pass
