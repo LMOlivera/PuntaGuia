@@ -16,9 +16,8 @@
           {% if session['logueado']==True %}
           <nav>
               <ul>
-                  <li>Logo</li>
-                  <li>Opción</li>
-                  <li>Opción</li>
+                  <li><a href="{{ url_for('index') }}">Logo</a></li>
+                  <!--Se pueden poner cosas nuevas aquí si se ve necesario-->
                   <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>
                   <li><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
               </ul>

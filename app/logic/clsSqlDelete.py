@@ -27,3 +27,16 @@ class SqlDelete:
                 cursor.execute(query,(id_usuario))
         self.conexion.commit()
         pass
+
+    def borrarLugar(self, ide):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    DELETE FROM tiene WHERE ide=%s
+                    """ 
+            cursor.execute(query,(ide))
+            query = """
+                    DELETE FROM lugar WHERE ide=%s
+                    """ 
+            cursor.execute(query,(ide))
+        self.conexion.commit()
+        pass

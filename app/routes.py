@@ -141,6 +141,29 @@ def agregar_lugar():
             return redirect('/')      
     return render_template('agregar_lugar.html', title="Registrar un establecimiento o evento", form=form)
 
+@app.route('/principal/eliminar_lugar', methods=['GET','POST'])
+def eliminar_lugar():
+    if not session.get('logueado'):
+        session.clear()
+        return redirect('/')
+    else:
+        try:
+            lugar = request.args.to_dict()
+            nombreLugar=lugar['nombre']
+            SqlSelect = clsSqlSelect.SqlSelect()
+            ide = SqlSelect.conseguir_ide(nombreLugar)
+            tiene = SqlSelect.conseguir_tabla_tiene(ide, session['id_usuario'])
+            if request.method=='POST':
+                SqlDelete = clsSqlDelete.SqlDelete()
+                SqlDelete.borrarLugar(ide)
+                return redirect('/principal')
+            if not bool(tiene):
+                return redirect('/principal')
+        except:
+            print('Algo malo ocurrió')
+            return redirect('/principal')
+    return render_template('eliminar_lugar.html', title="Eliminar establecimiento/evento", ide=ide) 
+
 @app.route('/logout')
 def logout():
     try:

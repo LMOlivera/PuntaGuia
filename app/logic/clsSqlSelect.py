@@ -99,3 +99,16 @@ class SqlSelect:
             return (idU['id_usuario']+1)
         self.conexion.commit()
         pass
+
+    def conseguir_tabla_tiene(self, id_lugar, id_usuario):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide, id
+                    FROM tiene
+                    WHERE ide=%s AND id=%s
+                    """
+            cursor.execute(query,(id_lugar, id_usuario))
+            tiene = cursor.fetchone()
+            return tiene
+        self.conexion.commit()
+        pass
