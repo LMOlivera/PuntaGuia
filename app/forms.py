@@ -45,7 +45,7 @@ class Lugar(FlaskForm):
     #CATEGORIA TIENE QUE SALIR DE LA BD LUEGO
     categoria = SelectField(u'Categoría', choices=[('1', 'Categoria 1'), ('2', 'Categoria 2'), ('3', 'Categoria 3')])
 
-    tipo = RadioField('Es un', choices=[("Establecimiento","Establecimiento"),("Evento","Evento")])
+    tipo = RadioField('Es un', choices=[("Establecimiento","Establecimiento"),("Evento","Evento")], default='Establecimiento')
     horario = StringField('Horario')
     fecha = StringField('Fecha')
     submit = SubmitField("Registrar")

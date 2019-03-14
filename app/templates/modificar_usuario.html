@@ -10,24 +10,24 @@
                 Email: {{ session['email'] }}<br>
             </p>
             <p>
-                {{ form.nombre.label }}: {{ form.nombre(size=32, value=session['nombre']) }}<br>
+                {{ form.nombre.label }}: {{ form.nombre(size=32, value=session['nombre'], required='required') }}<br>
             </p>
             <p>
-                {{ form.password.label }}: {{ form.password(size=32, value=contrasena) }}<br>
+                {{ form.password.label }}: {{ form.password(size=32, value=contrasena, required='required') }}<br>
             </p>
             <p>
                 Tipo de cuenta: {{ session['tipo'] }}
             </p>
             {% if session['tipo']=='turista' %}
             <p>
-                {{ form.edad.label }}: {{ form.edad(size=32, value=edad)}}<br>
+                {{ form.edad.label }}: {{ form.edad(size=32, value=edad, required='required')}}<br>
             </p>
             <p>
-                {{ form.pais.label }}: {{ form.pais(size=32, value=pais) }}<br>
+                {{ form.pais.label }}: {{ form.pais(size=32, value=pais, required='required') }}<br>
             </p>
             {% else %}
             <p>
-                {{ form.nombreEmpresa.label }}: {{ form.nombreEmpresa(size=32, value=nombreEmpresa) }}<br>
+                {{ form.nombreEmpresa.label }}: {{ form.nombreEmpresa(size=32, value=nombreEmpresa, required='required') }}<br>
             </p>
             {% endif %}
             <p>
