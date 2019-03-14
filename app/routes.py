@@ -134,7 +134,7 @@ def agregar_lugar():
         categorias = SqlSelect.conseguir_categorias()
         form.categoria.choices = [(categoria['idc'], categoria['nombre']) for categoria in categorias]
         try:
-            if form.validate_on_submit():
+            if request.method=='POST':
                 nombre = form.nombre.data
                 descripcion = form.descripcion.data
                 ubicacion = form.ubicacion.data

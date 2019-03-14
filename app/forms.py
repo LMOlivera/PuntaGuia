@@ -46,6 +46,6 @@ class Lugar(FlaskForm):
     categoria = SelectField(u'Categoría', choices=[('1', 'Categoria 1'), ('2', 'Categoria 2'), ('3', 'Categoria 3')])
 
     tipo = RadioField('Es un', choices=[("Establecimiento","Establecimiento"),("Evento","Evento")])
-    horario = StringField('Días de servicio/Fecha del evento')
+    horario = StringField('Horario')
     fecha = StringField('Fecha')
     submit = SubmitField("Registrar")
