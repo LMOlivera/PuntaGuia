@@ -175,6 +175,7 @@ def eliminar_lugar():
             SqlSelect = clsSqlSelect.SqlSelect()
             ide = SqlSelect.conseguir_ide(nombreLugar)
             tiene = SqlSelect.conseguir_tabla_tiene(ide, session['id_usuario'])
+            datos = SqlSelect.conseguir_datos_lugar(nombreLugar)
             if request.method=='POST':
                 SqlDelete = clsSqlDelete.SqlDelete()
                 SqlDelete.borrarLugar(ide)
@@ -184,7 +185,7 @@ def eliminar_lugar():
         except:
             print('Algo malo ocurrió')
             return redirect('/principal')
-    return render_template('eliminar_lugar.html', title="Eliminar establecimiento/evento", ide=ide) 
+    return render_template('eliminar_lugar.html', title="Eliminar establecimiento/evento", ide=ide, lugar=datos) 
 
 @app.route('/principal/modificar_lugar', methods=['GET','POST'])
 def modificar_lugar():

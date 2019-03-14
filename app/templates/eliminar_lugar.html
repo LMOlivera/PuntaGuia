@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<center>Datos del establecimiento/evento<br/><br/></center>
-<p>
-    INFORMACION DEL LUGAR PRÓXIMAMENTE
-</p><br>
+<h1><center>{{ lugar['nombre'] }}<br/><br/></center></h1>
+<p>{{ lugar['descripcion'] }}</p><br/>
+<p>Ubicación: {{ lugar['ubicacion'] }}</p><br/>
+<p>Horario: {{ lugar['horario'] }}</p><br/>
+{% if lugar['tipo']=='evento' %}
+<p>Día del evento: {{ lugar['fecha'] }}</p><br>
+{% endif %}
 <p>
     Confirme que realmente desea eliminar este establecimiento/evento, esta acción no se puede revertir:
     <form action='' method="POST">
