@@ -76,9 +76,11 @@ def index():
 
 @app.route("/principal/categoria")
 def categoria():
-    if not session.get('logueado'):
+    if (not session.get('logueado')):
         session.clear()
         return redirect('/')
+    elif (not session['tipo']=='turista'):
+        return redirect('/principal')
     else:
         try:
             categoria = request.args.to_dict()
@@ -121,9 +123,11 @@ def modificarUsuario():
 
 @app.route('/principal/agregar_lugar', methods=['GET','POST'])
 def agregar_lugar():
-    if not session.get('logueado'):
+    if (not session.get('logueado')):
         session.clear()
         return redirect('/')
+    elif (not session['tipo']=='empresa'):
+        return redirect('/principal')
     else:
         form=Lugar()
         SqlSelect = clsSqlSelect.SqlSelect()
@@ -159,9 +163,11 @@ def agregar_lugar():
 
 @app.route('/principal/eliminar_lugar', methods=['GET','POST'])
 def eliminar_lugar():
-    if not session.get('logueado'):
+    if (not session.get('logueado')):
         session.clear()
         return redirect('/')
+    elif (not session['tipo']=='empresa'):
+        return redirect('/principal')
     else:
         try:
             lugar = request.args.to_dict()
@@ -182,9 +188,11 @@ def eliminar_lugar():
 
 @app.route('/principal/modificar_lugar', methods=['GET','POST'])
 def modificar_lugar():
-    if not session.get('logueado'):
+    if (not session.get('logueado')):
         session.clear()
         return redirect('/')
+    elif (not session['tipo']=='empresa'):
+        return redirect('/principal')
     else:
         try:
             nom = request.args.to_dict()
@@ -223,3 +231,12 @@ def logout():
         print("Logout")           
     session.clear()        
     return redirect('/')
+
+@app.errorhandler(404)
+def pagina_no_encontrada(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def error_interno(e):
+    return render_template('500.html'), 500
+

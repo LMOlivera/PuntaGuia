@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<center>
+    <h1>404 - Página no encontrada</h1>
+    Debes de haber ingresado una dirección URL que no existe :(
+    <br/><br/><br/>
+    Por favor, <a href="{{ url_for('index') }}"><button>vuelve</button></a>
+</center>
+{% endblock %}
+

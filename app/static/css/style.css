@@ -1,6 +1,8 @@
 /*CSS separado en partes para meter las interfaces rápido,
 hay que unirlo refactorizado. Tener todo separado afecta la
 performance de la aplicación.*/
+@import "404.css";
+@import "500.css";
 @import "agregar_lugar.css";
 @import "bienvenido.css";
 @import "categoria.css";
