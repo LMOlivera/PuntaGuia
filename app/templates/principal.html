@@ -3,21 +3,23 @@
 {% block content %}
 {% if session['tipo']=='turista' %}
 <!--VENTANA TURISTA-->
-<div id="clima-content">
-    <div id="clima-actual">
-        Clima
-    </div>
-    <div id="clima-semana">
+<div id="principal-conteiner">
+    <div id="clima-content">
+        <div id="clima-actual">
+            Clima
+        </div>
+        <div id="clima-semana">
 
+        </div>
     </div>
-</div>
-<div id="listado-categorías">
-    <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
-    <ul>
-    {% for lugar in lugares %}
-        <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
-    {% endfor %}
-    </ul>
+    <div id="listado-categorías">
+        <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
+        <ul>
+        {% for lugar in lugares %}
+            <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
 </div>
 {% else %}
 <!--VENTANA EMPRESA-->

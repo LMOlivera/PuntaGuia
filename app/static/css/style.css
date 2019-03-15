@@ -14,30 +14,49 @@ performance de la aplicación.*/
 @import "usuario.css";
 
 /*El cuerpo del programa*/
-html, body {
-    height: 80%;
-    background-color: #4286f4;
+body {
+    height: 50%; /*80*/
+    background-image: url("/static/dedos-background.png");
+    /*padding: 15%;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 
 /*La barra de navegación*/
 nav{
-    background-color: red;
+    background-color: rgba(7, 91, 248, 0.445);
     text-align: center;
+    margin: 2vw 5vw;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
 }
 
 
 nav ul{
     margin: 0;
-    padding: 0;
+    padding: 10px;
     /*NO TOCAR*/
     display: flex;
     list-style-type: none;
     /**********/
+    justify-content: space-between;
+    
 }
 
 /*Elementos de la barra de navegación*/
 nav ul li{
     margin-left: 10px;
     margin-right: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+nav ul li a {
+    text-decoration: none;
+    color: aqua;
 }
 
+@media (max-width: 500px) {  /*REVISAR ESTA PARTE-----------------------------------------------------------------------------------------------------------------*/
+    body {
+        height: 20%;
+    }
+}
