@@ -4,7 +4,7 @@ class SqlInsert:
     def __init__(self):
         self.conexion = pymysql.connect(host='localhost',
                              user='root',
-                             password='',
+                             password='unicorns1998',
                              db='uruguia_bd_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)

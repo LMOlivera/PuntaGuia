@@ -1,0 +1,13 @@
+#principal-conteiner {
+    display: flex;
+}
+
+
+
+#clima-content {
+    width: 250px;
+    height: 600px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+}
