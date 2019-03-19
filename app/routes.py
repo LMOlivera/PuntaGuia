@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, session, request
+from flask import render_template, flash, redirect, session, request, url_for
 from app import app, logic
 from app.logic import clsSqlInsert, clsSqlDelete, clsSqlUpdate, clsSqlSelect
 from app.forms import LoginForm, RegisterForm, ModifyForm, Lugar
@@ -74,7 +74,7 @@ def index():
         return redirect('/')
     return render_template('principal.html', title="Página principal", lugares=listalugares)
 
-@app.route("/principal/categoria")
+@app.route("/principal/categoria", methods=['GET', 'POST'])
 def categoria():
     if (not session.get('logueado')):
         session.clear()
@@ -88,7 +88,26 @@ def categoria():
             lugares = SqlSelect.conseguir_lugares(categoria['categoria'])
         except:
             return redirect("/principal")        
-    return render_template('categoria.html', title='Explorando', lugares=lugares)
+    return render_template('categoria.html', title='Explorando', lugares=lugares, cat=categoria['categoria'])
+
+@app.route("/principal/categoria/agregar", methods=['GET', 'POST'])
+def logicaAgregarCategoria():
+    if (not session.get('logueado')):
+        session.clear()
+        return redirect('/')
+    elif (not session['tipo']=='turista'):
+        return redirect('/principal')
+    else:
+        #try:
+        datos = request.args.to_dict()
+        SqlSelect = clsSqlSelect.SqlSelect()
+        SqlInsert = clsSqlInsert.SqlInsert()
+        orden = SqlSelect.conseguir_orden(session['id_usuario'])
+        print(orden)
+        SqlInsert.insertarAPorVisitar(session['id_usuario'], datos['ide'], str(orden))
+        return redirect(url_for("categoria", categoria=datos['categoria']))
+        #except:
+        #    return redirect('/principal')
 
 @app.route('/principal/usuario')
 def usuario():

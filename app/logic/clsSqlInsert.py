@@ -75,3 +75,16 @@ class SqlInsert:
         self.conexion.commit()
         pass
 
+    def insertarAPorVisitar(self, id, ide, orden):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    INSERT INTO agrega_a_lista
+                    (id, ide, orden)
+                    VALUES
+                    (%s,%s,%s)
+                    """    
+            cursor.execute(query,(id, ide, str(int(orden)+1)))
+        self.conexion.commit()
+        pass
+
+

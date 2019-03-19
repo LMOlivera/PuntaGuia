@@ -161,8 +161,9 @@ class SqlSelect:
 
     def conseguir_lugares(self, categoria):
         with self.conexion.cursor() as cursor:
+            # Si llega a haber un error, es l.ide en SELECT
             query = """
-                    SELECT l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
+                    SELECT l.ide, l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
                     FROM lugar AS l
                     INNER JOIN pertenece_a AS p ON l.ide = p.ide
                     WHERE p.idc=%s
@@ -174,5 +175,20 @@ class SqlSelect:
         self.conexion.commit()
         pass
 
+    def conseguir_orden(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT orden
+                    FROM agrega_a_lista
+                    WHERE id=%s
+                    ORDER BY orden DESC LIMIT 1
+                    """
+            cursor.execute(query,(id))
+            orden = cursor.fetchone()
+            try:
+                return orden['orden']
+            except:
+                return 0
+        pass
         
 
