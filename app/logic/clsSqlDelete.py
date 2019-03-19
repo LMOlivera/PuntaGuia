@@ -30,17 +30,18 @@ class SqlDelete:
 
     def borrarLugar(self, ide):
         with self.conexion.cursor() as cursor:
-            query = """
-                    DELETE FROM tiene WHERE ide=%s
-                    """ 
-            cursor.execute(query,(ide))
-            query = """
-                    DELETE FROM lugar WHERE ide=%s
-                    """ 
-            cursor.execute(query,(ide))
-            query = """
-                    DELETE FROM pertence_a WHERE ide=%s
-                    """ 
-            cursor.execute(query,(ide))
+                valor = ide
+                query = """
+                        DELETE FROM tiene WHERE ide=%s
+                        """ 
+                cursor.execute(query,(valor))
+                query2 = """
+                        DELETE FROM pertenece_a WHERE ide=%s
+                        """ 
+                cursor.execute(query2,(valor))
+                query3 = """
+                        DELETE FROM lugar WHERE ide=%s
+                        """ 
+                cursor.execute(query3,(valor))
         self.conexion.commit()
         pass
