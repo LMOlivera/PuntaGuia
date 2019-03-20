@@ -98,16 +98,16 @@ def logicaAgregarCategoria():
     elif (not session['tipo']=='turista'):
         return redirect('/principal')
     else:
-        #try:
-        datos = request.args.to_dict()
-        SqlSelect = clsSqlSelect.SqlSelect()
-        SqlInsert = clsSqlInsert.SqlInsert()
-        orden = SqlSelect.conseguir_orden(session['id_usuario'])
-        print(orden)
-        SqlInsert.insertarAPorVisitar(session['id_usuario'], datos['ide'], str(orden))
-        return redirect(url_for("categoria", categoria=datos['categoria']))
-        #except:
-        #    return redirect('/principal')
+        try:
+            datos = request.args.to_dict()
+            SqlSelect = clsSqlSelect.SqlSelect()
+            SqlInsert = clsSqlInsert.SqlInsert()
+            orden = SqlSelect.conseguir_orden(session['id_usuario'])
+            print(orden)
+            SqlInsert.insertarAPorVisitar(session['id_usuario'], datos['ide'], str(orden))
+            return redirect(url_for("categoria", categoria=datos['categoria']))
+        except:
+            return redirect('/principal')
 
 @app.route('/principal/usuario')
 def usuario():
