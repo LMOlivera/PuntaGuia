@@ -2,12 +2,52 @@
     display: flex;
 }
 
-
-
 #clima-content {
     width: 250px;
     height: 600px;
     font-size: 24px;
     background-color: black;
     color: white;
+}
+
+/*-------EMPRESA-------*/
+#principal-contenedor-empresa {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#listar-establecimientos-lugares {
+    width: 100vw;
+    height: 100%;
+    margin: 2vw 5vw 2vw 1vw;
+    background-color: rgba(159, 186, 236, 0.568);
+    padding: 6px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+}
+#listar-establecimientos-lugares button {
+    margin: 1vw;
+    float: right;
+}
+
+#dialog-agregar button {
+    padding: 3vw;
+    font-size: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+    margin: 2vw 5vw;
+
+}
+@media (max-width: 800px) {
+    #principal-contenedor-empresa{
+        flex-direction: column;
+        width: 100vw;
+    }
+    #dialog-agregar button {
+        width: 100%;
+        margin: 30px;
+    }
+    #listar-establecimientos-lugares {
+        width: 90%;
+        align-items: center;
+    }
 }

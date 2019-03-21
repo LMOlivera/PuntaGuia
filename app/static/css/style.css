@@ -13,6 +13,13 @@ performance de la aplicación.*/
 @import "registro.css";
 @import "usuario.css";
 
+html {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a button {
+    text-decoration: none;
+}
+
 /*El cuerpo del programa*/
 body {
     height: 50%; /*80*/
@@ -21,6 +28,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
 }
 
 
@@ -30,6 +38,7 @@ nav{
     text-align: center;
     margin: 2vw 5vw;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+    line-height: 10px;
 }
 
 
@@ -41,7 +50,7 @@ nav ul{
     list-style-type: none;
     /**********/
     justify-content: space-between;
-    
+    align-items: center;
 }
 
 /*Elementos de la barra de navegación*/
@@ -49,10 +58,15 @@ nav ul li{
     margin-left: 10px;
     margin-right: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1px;
 }
 nav ul li a {
     text-decoration: none;
     color: aqua;
+    font-size: 20px;
+}
+#logo-image-nav {
+    height: 3vw;
 }
 
 @media (max-width: 500px) {  /*REVISAR ESTA PARTE-----------------------------------------------------------------------------------------------------------------*/

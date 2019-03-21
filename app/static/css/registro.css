@@ -1,7 +1,6 @@
 #registro-container{
     margin: 5vw;
     height: 100%;
-
 }
 
 #registro-content{
@@ -19,6 +18,22 @@
     transform:scale(0.5);
 }
 
-#registro-formulario{
+#registro-formulario {
+    display: flex;
+    flex-direction: column;
+    border: 2px #008CBA solid;
+    background-color:  rgba(159, 186, 236, 0.568);
+    padding: 6px;
+    height: auto;
+    margin: 2vw;
+}
 
+#registro-formulario #boton-crear-usuario {
+    align-self: center;
+}
+
+@media (max-width: 800px ) {
+    #registro-pet {
+        display: none;
+    }
 }

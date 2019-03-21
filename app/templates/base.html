@@ -16,7 +16,7 @@
           {% if session['logueado']==True %}
           <nav>
               <ul>
-                  <li><a href="{{ url_for('index') }}">Logo</a></li>
+                  <li><a href="{{ url_for('index') }}"><img src="/static/sun.png" id="logo-image-nav" alt="Imagen de la mascota."></a></li>
                   <li><a href="{{ url_for('index') }}">Página principal</a></li>
                   <!--Se pueden poner cosas nuevas aquí si se ve necesario-->
                   <li><a href="{{ url_for('usuario') }}">{{ session['nombre'] }}</a></li>

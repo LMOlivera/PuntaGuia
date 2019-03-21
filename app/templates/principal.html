@@ -23,24 +23,28 @@
 </div>
 {% else %}
 <!--VENTANA EMPRESA-->
-<div id="dialog-agregar">
-    <button>
-            <a href="{{ url_for('agregar_lugar') }}">Agregar</a>
-    </button>
-</div>
-<div id="listar-establecimientos-lugares">
-    {% for lugar in lugares %}
-        <p>
-            {{ lugar['nombre'] }}
-            {{ lugar['descripcion'] }}
-            {{ lugar['ubicacion'] }}
-            {{ lugar['tipo'] }}
-            {{ lugar['horario'] }}
-            {{ lugar['fecha'] }}
-            <button><a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}">Modificar</a></button>
-            <button><a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}">Eliminar</a></button>
-        </p>
-    {% endfor %}
+<div id="principal-contenedor-empresa">
+    <div id="dialog-agregar">
+        <a href="{{ url_for('agregar_lugar') }}">
+                <button>Agregar</button>
+        </a>
+    </div>
+    <div id="listar-establecimientos-lugares">
+        {% for lugar in lugares %}
+            <p>
+                {{ lugar['nombre'] }}
+                {{ lugar['descripcion'] }}
+                {{ lugar['ubicacion'] }}
+                {{ lugar['tipo'] }}
+                {{ lugar['horario'] }}
+                {{ lugar['fecha'] }}
+                <div>
+                    <a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}"><button>Modificar</button></a>
+                    <a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}"><button>Eliminar</button></a>
+                </div>
+            </p>
+        {% endfor %}
+    </div>
 </div>
 {% endif %}
 {% endblock %}
