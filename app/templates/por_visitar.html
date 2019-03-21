@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<center>
-    Categoría:
-</center><br>
-{% for lugar in lugares %}
+{% for lugar in lista %}
     <p>
         {{ lugar['nombre'] }}<br>
         {{ lugar['descripcion'] }}
@@ -13,7 +10,6 @@
         {% if lugar['tipo']=='evento' %}
             {{ lugar['fecha'] }}
         {% endif %}
-        <a href="{{ url_for('logicaAgregarCategoria', categoria=cat, ide=lugar['ide']) }}"><button> Agregar a "Por visitar"</button></a>
     </p>
 {% endfor %}
 </form>

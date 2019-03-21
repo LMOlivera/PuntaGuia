@@ -192,3 +192,32 @@ class SqlSelect:
         pass
         
 
+    def conseguir_PorVisitar(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide
+                    FROM agrega_a_lista
+                    WHERE id=%s
+                    """
+            cursor.execute(query,(id))
+            enLista = cursor.fetchall()
+            lista = []
+            for row in enLista:
+                lista.append(row['ide'])
+            return lista
+        pass
+
+    def conseguir_listado_PorVisitar(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.ide, l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario 
+                    FROM lugar l
+                    INNER JOIN agrega_a_lista a
+                    ON l.ide=a.ide
+                    WHERE a.id=%s
+                    ORDER BY a.orden
+                    """
+            cursor.execute(query,(id))
+            por_visitar = cursor.fetchall()
+            return por_visitar
+        pass

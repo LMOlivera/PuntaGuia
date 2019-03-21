@@ -86,9 +86,12 @@ def categoria():
             categoria = request.args.to_dict()
             SqlSelect = clsSqlSelect.SqlSelect()
             lugares = SqlSelect.conseguir_lugares(categoria['categoria'])
+            lista = SqlSelect.conseguir_PorVisitar(session['id_usuario'])
+            if not bool(lista):
+                lista = ['a']
         except:
             return redirect("/principal")        
-    return render_template('categoria.html', title='Explorando', lugares=lugares, cat=categoria['categoria'])
+    return render_template('categoria.html', title='Explorando', lugares=lugares, lista=lista, cat=categoria['categoria'])
 
 @app.route("/principal/categoria/agregar", methods=['GET', 'POST'])
 def logicaAgregarCategoria():
@@ -103,7 +106,6 @@ def logicaAgregarCategoria():
             SqlSelect = clsSqlSelect.SqlSelect()
             SqlInsert = clsSqlInsert.SqlInsert()
             orden = SqlSelect.conseguir_orden(session['id_usuario'])
-            print(orden)
             SqlInsert.insertarAPorVisitar(session['id_usuario'], datos['ide'], str(orden))
             return redirect(url_for("categoria", categoria=datos['categoria']))
         except:
@@ -237,6 +239,23 @@ def modificar_lugar():
             print('Error')
             return redirect('/principal')
     return render_template('modificar_lugar.html', title='Modificar establecimiento/evento', form=form, lugar=lugar, pertenece_a=pertenece_a) 
+
+@app.route('/principal/por_visitar', methods=['GET','POST'])
+def por_visitar():
+    if (not session.get('logueado')):
+        session.clear()
+        return redirect('/')
+    elif (not session['tipo']=='turista'):
+        return redirect('/principal')
+    else:
+        #try:
+        SqlSelect = clsSqlSelect.SqlSelect()
+        lista = SqlSelect.conseguir_listado_PorVisitar(session['id_usuario'])
+        if not bool(lista):
+            lista = ['a']
+        #except:
+        #    return redirect("/principal")        
+    return render_template('por_visitar.html', title='Por visitar', lista=lista)
 
 @app.route('/logout')
 def logout():
