@@ -2,6 +2,10 @@
 lo mejor sería hacer que las cosas se centren y probablemente acomodarlo
 al resto del CSS sin tener que dejarlo aparte (me explico?).*/
 
+a {
+    text-decoration: none;
+}
+
 #bienvenido-container{
     height: auto;
     margin: 5vw;
@@ -49,7 +53,7 @@ button{
     width: 100%;
     min-width: 20px;
     max-width: 200px;
-    margin: 10px;
+    margin: 10px 10px;
     font-size: 100%;
     color: white;
     background-color: #008CBA;
@@ -59,35 +63,72 @@ button{
     line-height: 20px;
 }
 button:hover {
-    background-color: white; 
-    color: black;
-    transform:scale(1.2);
-    border: 3px #008CBA;
+    background-color: rgb(8, 123, 161); 
+    color: rgb(37, 37, 37);
+    transform:scale(0.9);
+    border: 1px white solid;
   }
 
 
-#bienvenido-boton-escondido{
+#bienvenido-boton-escondido {
     display: none;
 }
 
-#bienvenido-boton-mostrado{
+
+#bienvenido-boton-mostrado {
     display: block;
+    background-color: rgba(159, 186, 236, 0.568);
+    width: 70%;
+    height: 5%;
+    text-align: center;
+    border: 2px #008CBA solid;
+}
+
+#bienvenido-boton-mostrado button {
+    width: 65%;
 }
 
 #login-escondido{
     display: none;
 }
 
-#login-mostrado{
+#login-mostrado {
     display: block;
+    background-color: rgba(159, 186, 236, 0.568);
+    padding: 6px;
+    border: 2px #008CBA solid;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-@media (max-width: 500px) {
+
+@media (max-width: 800px) {
     button {
-        font-size: 10px;
-        line-height: 7px;
+        font-size: 14px;
+        line-height: 14px;
     }
     #bienvenido-container {
         margin: 8vw;
     }
+
+    #bienvenido-boton-mostrado button {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 10px;
+        font-size: 9px;
+        
+    }
 }
+@media (max-width: 900px) {
+    #bienvenido-boton-mostrado button {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 10px;
+        font-size: 12px;
+        
+    }
+}
+
 /* FIN DE CSS EXCLUSIVO DE BIENVENIDA, REFACTORIZAR POR DIOS*/

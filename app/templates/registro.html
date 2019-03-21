@@ -21,8 +21,8 @@
             {{ form.password(size=32, required='required') }}<br>
         </p>
         <p>
-            Acá te dejaría subir foto pero no está definido<br>
-            El tipo de usuario está en una variable de sesión
+            [Acá te dejaría subir foto pero no está definido<br>
+            El tipo de usuario está en una variable de sesión]
         </p>
         {% if tipo=="turista" %}
         <p>
@@ -39,7 +39,7 @@
             {{ form.nombreEmpresa(size=32, required='required') }}<br>
         </p>
         {% endif %} 
-        <p>{{ form.submit() }}</p>
+        <p id="boton-crear-usuario">{{ form.submit() }}</p>
         </form>
     </div>            
 </div>
