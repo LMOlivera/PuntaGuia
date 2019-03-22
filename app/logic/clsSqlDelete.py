@@ -64,9 +64,17 @@ class SqlDelete:
                         """ 
                 cursor.execute(query2,(valor))
                 query3 = """
-                        DELETE FROM lugar WHERE ide=%s
+                        DELETE FROM visito WHERE ide=%s
                         """ 
                 cursor.execute(query3,(valor))
+                query4 = """
+                        DELETE FROM agrega_a_lista WHERE ide=%s
+                        """ 
+                cursor.execute(query4,(valor))
+                query5 = """
+                        DELETE FROM lugar WHERE ide=%s
+                        """ 
+                cursor.execute(query5,(valor))
         self.conexion.commit()
         pass
 

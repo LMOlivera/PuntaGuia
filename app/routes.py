@@ -112,6 +112,7 @@ def logicaAgregarAPorVisitar():
         #except:
         #    return redirect('/principal')
 
+#TRY-CATCH APAGADO
 @app.route("/principal/categoria/eliminar", methods=['GET', 'POST'])
 def logicaEliminarDePorVisitar():
     if (not session.get('logueado')):
@@ -128,9 +129,6 @@ def logicaEliminarDePorVisitar():
         return redirect(url_for("categoria", categoria=datos['categoria']))
         #except:
         #    return redirect('/principal')
-
-
-
 
 @app.route('/principal/usuario')
 def usuario():
