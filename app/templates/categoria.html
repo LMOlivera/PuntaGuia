@@ -13,7 +13,11 @@
         {% if lugar['tipo']=='evento' %}
             {{ lugar['fecha'] }}
         {% endif %}
-        <a href="{{ url_for('logicaAgregarCategoria', categoria=cat, ide=lugar['ide']) }}"><button> Agregar a "Por visitar"</button></a>
+        {% if lugar['ide'] in lista %}
+            <a href="{{ url_for('logicaEliminarDePorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Eliminar de "Por visitar"</button></a>
+        {% else %}
+            <a href="{{ url_for('logicaAgregarAPorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Agregar a "Por visitar"</button></a>
+        {% endif%}
     </p>
 {% endfor %}
 </form>

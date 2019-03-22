@@ -95,7 +95,7 @@ def categoria():
 
 #TRY-CATCH APAGADO
 @app.route("/principal/categoria/agregar", methods=['GET', 'POST'])
-def logicaAgregarCategoria():
+def logicaAgregarAPorVisitar():
     if (not session.get('logueado')):
         session.clear()
         return redirect('/')
@@ -111,6 +111,25 @@ def logicaAgregarCategoria():
         return redirect(url_for("categoria", categoria=datos['categoria']))
         #except:
         #    return redirect('/principal')
+
+@app.route("/principal/categoria/eliminar", methods=['GET', 'POST'])
+def logicaEliminarDePorVisitar():
+    if (not session.get('logueado')):
+        session.clear()
+        return redirect('/')
+    elif (not session['tipo']=='turista'):
+        return redirect('/principal')
+    else:
+        #try:
+        datos = request.args.to_dict()
+        SqlDelete = clsSqlDelete.SqlDelete()
+        SqlDelete.borrarDePorVisitar(session['id_usuario'], datos['ide'])
+        return redirect(url_for("categoria", categoria=datos['categoria']))
+        #except:
+        #    return redirect('/principal')
+
+
+
 
 @app.route('/principal/usuario')
 def usuario():
