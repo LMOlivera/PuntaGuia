@@ -42,6 +42,22 @@ class SqlSelect:
         self.conexion.commit()
         pass
     
+    def listarLugaresDeEmpresa(self, ide):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.ide
+                    FROM tiene t
+                    INNER JOIN lugar l
+                    ON t.ide=l.ide
+                    WHERE id=%s
+                    """
+            cursor.execute(query,(ide))
+            listaLugares = cursor.fetchall()
+            return listaLugares            
+        self.conexion.commit()
+        pass
+
+
     def conseguir_ide(self, nombre):
         with self.conexion.cursor() as cursor:
             query = """
@@ -189,8 +205,7 @@ class SqlSelect:
                 return orden['orden']
             except:
                 return 0
-        pass
-        
+        pass  
 
     def conseguir_PorVisitar(self, id):
         with self.conexion.cursor() as cursor:

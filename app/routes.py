@@ -122,6 +122,7 @@ def logicaEliminarDePorVisitar():
     else:
         #try:
         datos = request.args.to_dict()
+        SqlSelect = clsSqlSelect.SqlSelect()
         SqlDelete = clsSqlDelete.SqlDelete()
         SqlDelete.borrarDePorVisitar(session['id_usuario'], datos['ide'])
         return redirect(url_for("categoria", categoria=datos['categoria']))
@@ -290,7 +291,14 @@ def logout():
         ses = int(session['id_usuario'])
         if iduINT==ses:
             SqlDelete = clsSqlDelete.SqlDelete()
-            SqlDelete.borrarUsuario(ses,session['tipo'])
+            SqlSelect = clsSqlSelect.SqlSelect()
+            lugaresABorrar = SqlSelect.listarLugaresDeEmpresa(session['id_usuario'])
+            #Si true, es una empresa y tiene lugares creados que hay que borrar, sino es turista
+            if bool(lugaresABorrar):
+                SqlDelete.borrarUsuario(ses,session['tipo'],lugaresABorrar)
+            else:
+                SqlDelete.borrarUsuario(ses,session['tipo'])
+            
     except:
         print("Logout")           
     session.clear()        
