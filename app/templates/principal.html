@@ -15,9 +15,9 @@
     <div id="listado-categorías">
         <!--Ver si se abre otra ventana al elegir categoria o se carga aquí-->
         <ul>
-        {% for lugar in lugares %}
-            <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
-        {% endfor %}
+            {% for lugar in lugares %}
+                <li><a href="{{ url_for('categoria', categoria=lugar['idc']) }}">{{ lugar["nombre"] }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </div>
@@ -30,21 +30,28 @@
         </a>
     </div>
     <div id="listar-establecimientos-lugares">
-        {% for lugar in lugares %}
+        {% if not lugares|length == 0 %}
+            {% for lugar in lugares %}
             <p id="listar-establecimientos-lugares-p">
                 {{ lugar['nombre'] }}
                 {{ lugar['descripcion'] }}
                 {{ lugar['ubicacion'] }}
                 {{ lugar['tipo'] }}
                 {{ lugar['horario'] }}
-                {{ lugar['fecha'] }}
+                {% if lugar['tipo'] == "Evento"%}
+                    {{ lugar['fecha'] }}
+                {% endif %}
                 <div id="modificar-borrar-buttons">
                     <a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}"><button>Modificar</button></a>
                     <a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}"><button>Eliminar</button></a>
                 </div>
                 <hr align="left" width="100%">
             </p>
-        {% endfor %}
+            {% endfor %}
+        {% else %}
+            No tienes lugares creados.
+        {% endif %}
+        
     </div>
 </div>
 {% endif %}

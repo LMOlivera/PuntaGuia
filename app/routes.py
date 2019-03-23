@@ -41,7 +41,6 @@ def registro():
             #try:
             SqlSelect = clsSqlSelect.SqlSelect()                
             SqlInsert = clsSqlInsert.SqlInsert()
-            print(SqlSelect.conseguir_ultimo_idMasUno())
             SqlInsert.crearUsuario(form.email.data,
                                     form.nombre.data,
                                     form.password.data,
@@ -123,10 +122,12 @@ def logicaEliminarDePorVisitar():
     else:
         #try:
         datos = request.args.to_dict()
-        SqlSelect = clsSqlSelect.SqlSelect()
         SqlDelete = clsSqlDelete.SqlDelete()
         SqlDelete.borrarDePorVisitar(session['id_usuario'], datos['ide'])
-        return redirect(url_for("categoria", categoria=datos['categoria']))
+        if len(datos) > 2:
+            return redirect(url_for("por_visitar"))
+        else:
+            return redirect(url_for("categoria", categoria=datos['categoria']))
         #except:
         #    return redirect('/principal')
 
@@ -276,7 +277,7 @@ def por_visitar():
         SqlSelect = clsSqlSelect.SqlSelect()
         lista = SqlSelect.conseguir_listado_PorVisitar(session['id_usuario'])
         if not bool(lista):
-            lista = ['a']
+            lista = []
         #except:
         #    return redirect("/principal")        
     return render_template('por_visitar.html', title='Por visitar', lista=lista)

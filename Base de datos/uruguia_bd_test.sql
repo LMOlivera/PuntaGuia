@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2019 a las 23:20:11
+-- Tiempo de generación: 23-03-2019 a las 19:22:25
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 
 INSERT INTO `empresa` (`id`, `nombre`) VALUES
-(3, 'Empresa de Test 3'),
-(4, 'Empresa de Test 4');
+(1, 'Empresa de Test 1'),
+(2, 'Empresa de Test 2');
 
 -- --------------------------------------------------------
 
@@ -92,15 +92,15 @@ CREATE TABLE IF NOT EXISTS `lugar` (
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`ide`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `lugar`
 --
 
 INSERT INTO `lugar` (`ide`, `nombre`, `descripcion`, `imagen`, `ubicacion`, `tipo`, `horario`, `fecha`) VALUES
-(1, 'Establecimiento Empresa 3', 'Un lugar lindo para pasar con la familia.', NULL, 'Un lugar muy lindo', 'Establecimiento', '8:00 a 20:00', '0000-00-00'),
-(2, 'Evento Empresa 3', 'AAAA', NULL, 'Alguna parte', 'Evento', 'Todo el día', '0000-00-00');
+(1, 'Un establecimiento de prueba', 'Un establecimiento muy lindo que deberías ir a ver alguna vez.', NULL, 'Algún lugar al que te gustará ir.', 'Establecimiento', 'Siempre abierto', '0000-00-00'),
+(2, 'Un evento', 'Para pasar un día lindo.', NULL, 'Av. Falsa 123', 'Evento', '08:00 a 20:00', '2019-03-19');
 
 -- --------------------------------------------------------
 
@@ -119,8 +119,7 @@ CREATE TABLE IF NOT EXISTS `pertenece_a` (
 
 INSERT INTO `pertenece_a` (`ide`, `idc`) VALUES
 (1, 1),
-(2, 4),
-(3, 2);
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -138,8 +137,8 @@ CREATE TABLE IF NOT EXISTS `tiene` (
 --
 
 INSERT INTO `tiene` (`ide`, `id`) VALUES
-(1, 3),
-(2, 3);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -159,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `turista` (
 --
 
 INSERT INTO `turista` (`id`, `edad`, `pais_origen`) VALUES
-(1, 20, 'Pais de prueba'),
-(2, 44, 'PaisDePrueba2');
+(3, 21, 'Argentina'),
+(4, 39, 'Chile');
 
 -- --------------------------------------------------------
 
@@ -185,10 +184,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
-(1, 'test1@test1.com', 'Test 1 Turista', '123', NULL, 'turista'),
-(2, 'test2@test2.com', 'Test 2 Turista', '123', NULL, 'turista'),
-(3, 'test3@test3.com', 'Test 3 Empresa', '123', NULL, 'empresa'),
-(4, 'test4@test4.com', 'Test 4 Empresa', '123', NULL, 'empresa');
+(1, 'test1@test1.com', 'Fulano de Empresa', '123', NULL, 'empresa'),
+(2, 'test2@test2.com', 'Sultano de Empresa', '123', NULL, 'empresa'),
+(3, 'test3@test3.com', 'Fulano de Turista', '123', NULL, 'turista'),
+(4, 'test4@test4.com', 'Sultano de Turista', '123', NULL, 'turista');
 
 -- --------------------------------------------------------
 

@@ -57,7 +57,6 @@ class SqlSelect:
         self.conexion.commit()
         pass
 
-
     def conseguir_ide(self, nombre):
         with self.conexion.cursor() as cursor:
             query = """
@@ -112,7 +111,10 @@ class SqlSelect:
                     """
             cursor.execute(query)
             idU = cursor.fetchone()
-            return (idU['id_usuario']+1)
+            if bool(idU):
+                return (idU['id_usuario']+1)
+            else:
+                return 1
         self.conexion.commit()
         pass
 
@@ -177,7 +179,6 @@ class SqlSelect:
 
     def conseguir_lugares(self, categoria):
         with self.conexion.cursor() as cursor:
-            # Si llega a haber un error, es l.ide en SELECT
             query = """
                     SELECT l.ide, l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
                     FROM lugar AS l

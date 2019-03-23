@@ -1,0 +1,1 @@
+Si se va a truncar la base de datos, se deben crear categorias de manera obligatoria en la tabla "categoria".
