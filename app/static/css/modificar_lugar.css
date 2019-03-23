@@ -1,29 +1,35 @@
-
-/*#formulario-modificar-evento {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 40%;
-    height: 20vw;
-    margin: 2vw 15vw;
-    padding: 3vw 10vw;
-    background-color: rgba(159, 186, 236, 0.568);
-    align-items: center;
-}*/
 #formulario-modificar-evento {
     display: flex;
-    flex-direction: column;
-    background-color:  rgba(159, 186, 236, 0.568);
-    padding: 6px;
-    height: 50vw;
-    width: 50%;
+    flex-direction: row;
+    width: 60%;
     margin: 2vw;
-    margin-left: 25vw;
+    margin-left: 18vw;
+    align-items: inherit;
+    padding-left: 5vw;
+    font-size: 80%;
 }
+
+#titulo-datos {
+    background-color:  rgba(159, 186, 236, 0.568);
+    font-size: 160%;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+#nom-desc-cet-ub-tip {
+    width: 50%;
+}
+
+#hor-fech {
+    align-items: flex-end;
+    width: 50%;
+
+}
+
 #boton-modificar-empresa {
     display: flex;
-    width: 100%;
-    justify-content: center;
+    width: 10%;
+    margin: auto;
 }
 #formulario-modificar-evento p {
     display: flex;
@@ -34,13 +40,37 @@
 
 @media (max-width: 800px) {
     #formulario-modificar-evento {
+        display: flex;
         flex-direction: column;
-        width: 80vw;
-        height: 100%;
-        margin: 5vw;
-    }
-    #modificar-evento-titulo {
-        margin-left: 5vw;
+        align-items: inherit;
+        font-size: 80%;
     }
     
+    #titulo-datos {
+        background-color:  rgba(159, 186, 236, 0.568);
+        font-size: 160%;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    
+    #nom-desc-cet-ub-tip {
+        width: 100%;
+    }
+    
+    #hor-fech {
+        align-items: flex-end;
+        width: 100%;
+    }
+    
+    #boton-modificar-empresa {
+        display: flex;
+        width: 10%;
+        margin: auto;
+    }
+    #formulario-modificar-evento p {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
 }

@@ -48,8 +48,8 @@ a {
     color:red;
     font-weight: bold;      
 }
-
-button{
+/*-------------BOTONES-------------------*/
+button, #submit {
     width: 100%;
     min-width: 20px;
     max-width: 200px;
@@ -62,13 +62,13 @@ button{
     cursor: pointer;
     line-height: 20px;
 }
-button:hover {
+button:hover , #submit:hover {
     background-color: rgb(8, 123, 161); 
     color: rgb(37, 37, 37);
     transform:scale(0.9);
     border: 1px white solid;
 }
-
+/*------------------------------------------*/
 
 #bienvenido-boton-escondido {
     display: none;
