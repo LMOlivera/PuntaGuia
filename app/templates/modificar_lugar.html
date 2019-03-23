@@ -1,33 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<center>Datos del establecimiento/evento<br/><br/></center>
-<p id="modificar-evento-titulo">
-    INFORMACION DEL LUGAR A MODIFICAR  <!--sera posible borrar esto?-->
-</p><br>
-<form action="" method="post" id="formulario-modificar-evento">
+
+<form action="" method="post" id="titulo-datos" >
+    <center>Datos del establecimiento/evento<br/><br/></center>
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.nombre.label }}: {{ form.nombre(value=lugar['nombre'], required='required') }}<br>
-    </p>
-    <p>
-        {{ form.descripcion.label }}: {{ form.descripcion(value=lugar['descripcion'], required='required') }}<br>
-    </p>
-    <p>
-        {{ form.categoria.label }}: {{ form.categoria(value=pertenece_a['idc']) }}<br>
-    </p>
-    <p>
-        {{ form.ubicacion.label }}: {{ form.ubicacion(value=lugar['ubicacion'], required='required') }}<br>
-    </p>
-    <p>
-        {{ form.tipo.label }}: {{ form.tipo(value=lugar['tipo']) }}<br>
-    </p>
-    <p>
-        {{ form.horario.label }}: {{ form.horario(value=lugar['horario'], required='required') }}<br>
-    </p>
-    <p>
-        {{ form.fecha.label }}: {{ form.fecha(value=lugar['fecha']) }}<br>
-    </p>
+    <div id="formulario-modificar-evento">
+        <div id="nom-desc-cet-ub-tip">
+            <p>
+                {{ form.nombre.label }}: {{ form.nombre(value=lugar['nombre'], required='required') }}<br>
+            </p>
+            <p>
+                {{ form.descripcion.label }}: {{ form.descripcion(value=lugar['descripcion'], required='required') }}<br>
+            </p>
+            <p>
+                {{ form.categoria.label }}: {{ form.categoria(value=pertenece_a['idc']) }}<br>
+            </p>
+            <p>
+                {{ form.ubicacion.label }}: {{ form.ubicacion(value=lugar['ubicacion'], required='required') }}<br>
+            </p>
+        </div>
+        <div id="hor-fech">
+            <p>
+                {{ form.horario.label }}: {{ form.horario(value=lugar['horario'], required='required') }}<br>
+            </p>
+            <p>
+                {{ form.fecha.label }}: {{ form.fecha(value=lugar['fecha']) }}<br>
+            </p>
+            <p>
+                {{ form.tipo.label }}: {{ form.tipo(value=lugar['tipo']) }}<br>
+            </p>
+        </div>
+    </div>
     <p>
         <p id="boton-modificar-empresa">{{ form.submit(value='Modificar') }}</p>
     </p>

@@ -4,13 +4,16 @@
     flex-direction: column;
 }
 
-#usuario-informacion{
+#usuario-informacion {
     background-color: rgba(159, 186, 236, 0.568);
     padding: 5vw;
     margin-bottom: 2vw;
-    justify-content: center;
-    margin-left: 5vw; 
-    margin-right: 5vw;
+    margin-left: 20vw; 
+    margin-right: 20vw;
+    font-size: 160%;
+}
+#usuario-informacion p {
+    font-size: 80%;
 }
 
 #danger-zone{
@@ -21,7 +24,7 @@
     padding: 1vw;
     padding-bottom: 0vw;
     background-color: rgba(247, 107, 107, 0.692);
-    font-size: 25px;
+    font-size: 150%;
 }
 #confirmacion-borrar-empresa {
     font-size: 80%;
