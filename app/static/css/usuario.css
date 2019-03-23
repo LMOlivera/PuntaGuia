@@ -1,16 +1,36 @@
+
 #usuario{
-    background-color: whitesmoke;
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 #usuario-informacion{
-    background-color: rgb(33, 140, 211);
+    background-color: rgba(159, 186, 236, 0.568);
+    padding: 5vw;
+    margin-bottom: 2vw;
+    justify-content: center;
+    margin-left: 5vw; 
+    margin-right: 5vw;
 }
 
 #danger-zone{
-    background-color: tomato;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 1vw;
+    padding-bottom: 0vw;
+    background-color: rgba(247, 107, 107, 0.692);
+    font-size: 25px;
+}
+#confirmacion-borrar-empresa {
+    font-size: 80%;
+}
+
+#danger-zone button {
+    background-color: red;
+    line-height: 150%;
     color: white;
-    padding: 5px;
 }
 
 #confirmar-borrar-usuario{

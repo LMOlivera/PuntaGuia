@@ -31,17 +31,18 @@
     </div>
     <div id="listar-establecimientos-lugares">
         {% for lugar in lugares %}
-            <p>
+            <p id="listar-establecimientos-lugares-p">
                 {{ lugar['nombre'] }}
                 {{ lugar['descripcion'] }}
                 {{ lugar['ubicacion'] }}
                 {{ lugar['tipo'] }}
                 {{ lugar['horario'] }}
                 {{ lugar['fecha'] }}
-                <div>
+                <div id="modificar-borrar-buttons">
                     <a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}"><button>Modificar</button></a>
                     <a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}"><button>Eliminar</button></a>
                 </div>
+                <hr align="left" width="100%">
             </p>
         {% endfor %}
     </div>

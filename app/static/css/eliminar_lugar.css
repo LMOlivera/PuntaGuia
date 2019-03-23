@@ -1,0 +1,76 @@
+#eliminar-lugar-descripcion {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin-left: 20vw;
+    background-color: rgba(159, 186, 236, 0.568);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+    margin-bottom: 2vw;
+}
+
+#eliminar-lugar-descripcion p {
+    padding-left: 10vw;;
+}
+
+#eliminar-lugar-descripcion h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#confirmacion-eliminar-evento {
+    display: flex;
+    flex-direction: column;
+    width: 58vw;
+    margin-left: 20vw;
+    padding: 1vw;
+    padding-bottom: 0vw;
+    background-color: rgba(247, 107, 107, 0.692);
+    font-size: 25px;
+}
+#confirmar-boton {
+    display: flex;
+    justify-content: center;
+    transform: scale(1.5);
+}
+
+#confirmacion-eliminar-evento input {
+    width: 100%;
+    min-width: 20px;
+    max-width: 200px;
+    margin: 10px 10px;
+    font-size: 100%;
+    color: white;
+    background-color: red;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    cursor: pointer;
+    line-height: 20px;
+}
+#confirmacion-eliminar-evento input:hover {
+    background-color: rgb(116, 3, 3); 
+    color: rgb(71, 70, 70);
+    transform:scale(0.9);
+    border: 1px white solid;
+}
+
+
+#titulo-confirmacion-eliminacion {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+@media (max-width: 800px) {
+    #eliminar-lugar-descripcion {
+        margin: 5vw;
+        margin-top: 10vw;
+        width: 90%;
+    }
+    #confirmacion-eliminar-evento {
+        margin: 5vw;
+        width: 90%;
+        align-items: center;
+    }
+    #confirmar-boton {
+        width: fit-content;
+    }
+}
