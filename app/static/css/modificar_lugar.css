@@ -1,0 +1,46 @@
+
+/*#formulario-modificar-evento {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 40%;
+    height: 20vw;
+    margin: 2vw 15vw;
+    padding: 3vw 10vw;
+    background-color: rgba(159, 186, 236, 0.568);
+    align-items: center;
+}*/
+#formulario-modificar-evento {
+    display: flex;
+    flex-direction: column;
+    background-color:  rgba(159, 186, 236, 0.568);
+    padding: 6px;
+    height: 50vw;
+    width: 50%;
+    margin: 2vw;
+    margin-left: 25vw;
+}
+#boton-modificar-empresa {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+#formulario-modificar-evento p {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+}
+
+@media (max-width: 800px) {
+    #formulario-modificar-evento {
+        flex-direction: column;
+        width: 80vw;
+        height: 100%;
+        margin: 5vw;
+    }
+    #modificar-evento-titulo {
+        margin-left: 5vw;
+    }
+    
+}

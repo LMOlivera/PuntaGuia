@@ -37,7 +37,7 @@ class ModifyForm(FlaskForm):
     submit = SubmitField("Guardar cambios")
 
 class Lugar(FlaskForm):
-    nombre = StringField('Nombre del establecimiento/evento')
+    nombre = StringField('Nombre')
     descripcion = TextAreaField('Descripción')
     # imagen?
     ubicacion = StringField('Ubicación')

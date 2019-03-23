@@ -2,10 +2,10 @@
 
 {% block content %}
 <center>Datos del establecimiento/evento<br/><br/></center>
-<p>
-    INFORMACION DEL LUGAR A MODIFICAR
+<p id="modificar-evento-titulo">
+    INFORMACION DEL LUGAR A MODIFICAR  <!--sera posible borrar esto?-->
 </p><br>
-<form action="" method="post">
+<form action="" method="post" id="formulario-modificar-evento">
     {{ form.hidden_tag() }}
     <p>
         {{ form.nombre.label }}: {{ form.nombre(value=lugar['nombre'], required='required') }}<br>
@@ -29,7 +29,7 @@
         {{ form.fecha.label }}: {{ form.fecha(value=lugar['fecha']) }}<br>
     </p>
     <p>
-        <p>{{ form.submit(value='Modificar') }}</p>
+        <p id="boton-modificar-empresa">{{ form.submit(value='Modificar') }}</p>
     </p>
 </form>
 </form>
