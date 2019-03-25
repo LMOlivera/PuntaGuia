@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `uruguia_bd_test`
+-- Base de datos: `puntaguia_bd_test`
 --
 
 -- --------------------------------------------------------
