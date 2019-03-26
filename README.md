@@ -34,7 +34,7 @@ Ahora, para poder hacer que la aplicación Flask se conecte a WAMPServer, **se d
 self.conexion = pymysql.connect(host='localhost',
                                 user='root', #Nombre del usuario que usamos para conectarnos a WAMPServer, 'root' por defecto.
                                 password='', #Si el usuario anterior tiene contraseña debemos escribirla aquí
-                                db='uruguia_bd_test', #Nombre de la base de datos dentro de WAMPServer
+                                db='puntaguia_bd_test', #Nombre de la base de datos dentro de WAMPServer
                                 charset='utf8mb4',
                                 cursorclass=pymysql.cursors.DictCursor)
 ```
@@ -51,7 +51,7 @@ Si se han instalado todos los programas de prerequisito, se cargó la base de da
   - logic: Contiene clases de Python que se encargan de la lógica de negocio de la aplicación web.
   - static: Contiene archivos estáticos (imagenes, CSS, Javascript).
   - templates: Contiene las plantillas HTML del programa.
-  -__init__.py: Inicia la aplicación en si.
+  - __init__.py: Inicia la aplicación en si.
   - routes.py: Contiene las URL (routing) del sistema.
 - README.md: Esta guía.
 - Start-Server.bat: Si lo ejecutas en tu computadora cargará la aplicación en tu navegador.
