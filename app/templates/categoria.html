@@ -1,35 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div id="categoria-content">
-    <div id="titulo-categoria">
-        <center>
-            Categoría:
-        </center><br>
-        <hr class="hrs">
-    </div>
-    <div id="p-categoria">
-        {% for lugar in lugares %}
-        <div id="p-categoria-p">
-            <h2>{{ lugar['nombre'] }}</h2><br>
-            {{ lugar['descripcion'] }}
-            {{ lugar['ubicacion'] }}
-            {{ lugar['horario'] }}
-            {% if lugar['tipo']=='evento' %}
-                {{ lugar['fecha'] }}
-            {% endif %}
-        </div>
-        <div id="boton-categoria">
-            {% if lugar['ide'] in lista %}
-                <a href="{{ url_for('logicaEliminarDePorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Eliminar de "Por visitar"</button></a>
-            {% else %}
-                <a href="{{ url_for('logicaAgregarAPorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Agregar a "Por visitar"</button></a>
-            {% endif%}
-        </div>
-        <div class="hrs">
-            <hr>
-        </div>
-        {% endfor %}
-    </div>
-</div>
+<center>
+    Categoría:
+</center><br>
+{% for lugar in lugares %}
+    <p>
+        {{ lugar['nombre'] }}<br>
+        {{ lugar['descripcion'] }}
+        {{ lugar['ubicacion'] }}
+        {{ lugar['horario'] }}
+        {% if lugar['tipo']=='evento' %}
+            {{ lugar['fecha'] }}
+        {% endif %}
+        {% if lugar['ide'] in lista %}
+            <a href="{{ url_for('logicaEliminarDePorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Eliminar de "Por visitar"</button></a>
+        {% else %}
+            <a href="{{ url_for('logicaAgregarAPorVisitar', categoria=cat, ide=lugar['ide']) }}"><button> Agregar a "Por visitar"</button></a>
+        {% endif%}
+    </p>
+{% endfor %}
+</form>
 {% endblock %}

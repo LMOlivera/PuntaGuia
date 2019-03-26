@@ -2,6 +2,14 @@
     display: flex;
 }
 
+#clima-content {
+    width: 250px;
+    height: 600px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+}
+
 /*-------EMPRESA-------*/
 #principal-contenedor-empresa {
     display: flex;
@@ -43,44 +51,6 @@ hr {
     margin: 2vw 5vw;
 
 }
-/*-----TURISTA----------*/
-#clima-content {
-    width: 250px;
-    height: 600px;
-    font-size: 24px;
-    background-color: black;
-    color: white;
-}
-
-#listado-categorias {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    align-items: center;
-    justify-content: center;
-}
-
-#listado-categorias ul {
-    list-style: none;
-    width: 50%;
-}
-#listado-categorias ul li {
-    background-color: rgb(7, 91, 248);
-    margin: 1vw;
-    padding: 1vw;
-    line-height: 1vw;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
-    
-}
-
-#listado-categorias ul li a {
-    text-decoration: none;
-    color: aqua;
-    font-size: 150%;
-    
-}
-
 
 @media (max-width: 800px) {
     #principal-contenedor-empresa{
