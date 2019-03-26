@@ -4,18 +4,6 @@
     flex-direction: column;
 }
 
-#usuario-informacion {
-    background-color: rgba(159, 186, 236, 0.568);
-    padding: 5vw;
-    margin-bottom: 2vw;
-    margin-left: 20vw; 
-    margin-right: 20vw;
-    font-size: 160%;
-}
-#usuario-informacion p {
-    font-size: 80%;
-}
-
 #danger-zone{
     display: flex;
     flex-direction: column;
