@@ -5,7 +5,7 @@ class SqlSelect:
         self.conexion = pymysql.connect(host='localhost',
                              user='root',
                              password='',
-                             db='uruguia_bd_test',
+                             db='puntaguia_bd_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
         self.userdata = ""
@@ -42,6 +42,21 @@ class SqlSelect:
         self.conexion.commit()
         pass
     
+    def listarLugaresDeEmpresa(self, ide):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.ide
+                    FROM tiene t
+                    INNER JOIN lugar l
+                    ON t.ide=l.ide
+                    WHERE id=%s
+                    """
+            cursor.execute(query,(ide))
+            listaLugares = cursor.fetchall()
+            return listaLugares            
+        self.conexion.commit()
+        pass
+
     def conseguir_ide(self, nombre):
         with self.conexion.cursor() as cursor:
             query = """
@@ -96,7 +111,10 @@ class SqlSelect:
                     """
             cursor.execute(query)
             idU = cursor.fetchone()
-            return (idU['id_usuario']+1)
+            if bool(idU):
+                return (idU['id_usuario']+1)
+            else:
+                return 1
         self.conexion.commit()
         pass
 
@@ -162,7 +180,7 @@ class SqlSelect:
     def conseguir_lugares(self, categoria):
         with self.conexion.cursor() as cursor:
             query = """
-                    SELECT l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
+                    SELECT l.ide, l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario, l.fecha
                     FROM lugar AS l
                     INNER JOIN pertenece_a AS p ON l.ide = p.ide
                     WHERE p.idc=%s
@@ -174,5 +192,48 @@ class SqlSelect:
         self.conexion.commit()
         pass
 
-        
+    def conseguir_orden(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT orden
+                    FROM agrega_a_lista
+                    WHERE id=%s
+                    ORDER BY orden DESC LIMIT 1
+                    """
+            cursor.execute(query,(id))
+            orden = cursor.fetchone()
+            try:
+                return orden['orden']
+            except:
+                return 0
+        pass  
 
+    def conseguir_PorVisitar(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT ide
+                    FROM agrega_a_lista
+                    WHERE id=%s
+                    """
+            cursor.execute(query,(id))
+            enLista = cursor.fetchall()
+            lista = []
+            for row in enLista:
+                lista.append(row['ide'])
+            return lista
+        pass
+
+    def conseguir_listado_PorVisitar(self, id):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    SELECT l.ide, l.nombre, l.descripcion, l.ubicacion, l.tipo, l.horario 
+                    FROM lugar l
+                    INNER JOIN agrega_a_lista a
+                    ON l.ide=a.ide
+                    WHERE a.id=%s
+                    ORDER BY a.orden
+                    """
+            cursor.execute(query,(id))
+            por_visitar = cursor.fetchall()
+            return por_visitar
+        pass

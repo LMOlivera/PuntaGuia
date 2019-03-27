@@ -4,42 +4,42 @@
 <div id='registro-container'>
     <div id="registro-content">
         <div id="registro-pet">
-            Imagen de mascota?
+            <img src="/static/sun.png" class="responsive-image" alt="Imagen de la mascota.">
         </div>
         <form id="registro-formulario" action="" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
+            {{ form.email(size=32, required='required') }}<br>
         </p>
         <p>
             {{ form.nombre.label }}<br>
-            {{ form.nombre(size=32) }}<br>
+            {{ form.nombre(size=32, required='required') }}<br>
         </p>
         <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            {{ form.password(size=32, required='required') }}<br>
         </p>
         <p>
-            Acá te dejaría subir foto pero no está definido<br>
-            El tipo de usuario está en una variable de sesión
+            [Acá te dejaría subir foto pero no está definido<br>
+            El tipo de usuario está en una variable de sesión]
         </p>
         {% if tipo=="turista" %}
         <p>
             {{ form.edad.label }}<br>
-            {{ form.edad(size=32) }}<br>
+            {{ form.edad(size=32, required='required') }}<br>
         </p>
         <p>
             {{ form.pais.label }}<br>
-            {{ form.pais(size=32) }}<br>
+            {{ form.pais(size=32, required='required') }}<br>
         </p>
         {% else %}
         <p>
             {{ form.nombreEmpresa.label }}<br>
-            {{ form.nombreEmpresa(size=32) }}<br>
+            {{ form.nombreEmpresa(size=32, required='required') }}<br>
         </p>
         {% endif %} 
-        <p>{{ form.submit() }}</p>
+        <p id="boton-crear-usuario">{{ form.submit() }}</p>
         </form>
     </div>            
 </div>

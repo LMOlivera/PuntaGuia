@@ -4,7 +4,7 @@
 <div id='bienvenido-container'>
     <div id="bienvenido-contenido">
         <div id="bienvenido-mascota">
-            Imágen de posible mascota.
+            <img src="/static/sun.png" class="responsive-image" alt="Imagen de la mascota.">
         </div>
         <div id='bienvenido-login-eleccion'>
             <button onclick="botonesCrearCuenta()">
@@ -45,7 +45,7 @@
                     {{ form.password.label }}<br>
                     {{ form.password(size=32) }}<br>
                 </p>
-                <p>{{ form.submit() }}</p>
+                <center><p id="iniciar-sesion-boton" >{{ form.submit() }}</p></center>
             </form>
         </div>
     </div>            

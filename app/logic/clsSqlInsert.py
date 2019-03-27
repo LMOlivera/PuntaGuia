@@ -5,7 +5,7 @@ class SqlInsert:
         self.conexion = pymysql.connect(host='localhost',
                              user='root',
                              password='',
-                             db='uruguia_bd_test',
+                             db='puntaguia_bd_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
         self.userdata = ""
@@ -74,4 +74,17 @@ class SqlInsert:
                 cursor.execute(query,(id_nuevoUsuario,nombreEmpresa))
         self.conexion.commit()
         pass
+
+    def insertarAPorVisitar(self, id, ide, orden):
+        with self.conexion.cursor() as cursor:
+            query = """
+                    INSERT INTO agrega_a_lista
+                    (id, ide, orden)
+                    VALUES
+                    (%s,%s,%s)
+                    """    
+            cursor.execute(query,(id, ide, str(int(orden)+1)))
+        self.conexion.commit()
+        pass
+
 

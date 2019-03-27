@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-03-2019 a las 15:53:03
+-- Tiempo de generación: 23-03-2019 a las 19:22:25
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -43,7 +43,17 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`idc`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idc`, `nombre`) VALUES
+(1, 'Al aire libre'),
+(2, 'Restaurante'),
+(3, 'Tienda'),
+(4, 'Otro');
 
 -- --------------------------------------------------------
 
@@ -62,9 +72,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 
 INSERT INTO `empresa` (`id`, `nombre`) VALUES
-(3, 'Empresa Falsa 1'),
-(4, 'Empresa Falsa 2'),
-(5, '123');
+(1, 'Empresa de Test 1'),
+(2, 'Empresa de Test 2');
 
 -- --------------------------------------------------------
 
@@ -74,8 +83,8 @@ INSERT INTO `empresa` (`id`, `nombre`) VALUES
 
 CREATE TABLE IF NOT EXISTS `lugar` (
   `ide` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `descripcion` varchar(100) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(1000) NOT NULL,
   `imagen` varchar(100) DEFAULT NULL,
   `ubicacion` varchar(100) NOT NULL,
   `tipo` varchar(20) NOT NULL,
@@ -83,16 +92,15 @@ CREATE TABLE IF NOT EXISTS `lugar` (
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`ide`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `lugar`
 --
 
 INSERT INTO `lugar` (`ide`, `nombre`, `descripcion`, `imagen`, `ubicacion`, `tipo`, `horario`, `fecha`) VALUES
-(5, 'Establecimiento Empresa 3', 'Una prueba para la base de datos', NULL, 'Algun lugar', 'Establecimiento', '0', '0000-00-00'),
-(6, 'Establecimiento Empresa 4', 'Un insert mas a la base de datos de prueba', NULL, 'Aquí', 'Establecimiento', '00', '0000-00-00'),
-(7, 'Evento ficticio', 'Creado para ser data de prueba', NULL, 'La base de datos', 'Evento', '00', '0000-00-00');
+(1, 'Un establecimiento de prueba', 'Un establecimiento muy lindo que deberías ir a ver alguna vez.', NULL, 'Algún lugar al que te gustará ir.', 'Establecimiento', 'Siempre abierto', '0000-00-00'),
+(2, 'Un evento', 'Para pasar un día lindo.', NULL, 'Av. Falsa 123', 'Evento', '08:00 a 20:00', '2019-03-19');
 
 -- --------------------------------------------------------
 
@@ -110,9 +118,8 @@ CREATE TABLE IF NOT EXISTS `pertenece_a` (
 --
 
 INSERT INTO `pertenece_a` (`ide`, `idc`) VALUES
-(5, 1),
-(6, 3),
-(7, 1);
+(1, 1),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -130,9 +137,8 @@ CREATE TABLE IF NOT EXISTS `tiene` (
 --
 
 INSERT INTO `tiene` (`ide`, `id`) VALUES
-(5, 3),
-(6, 4),
-(7, 5);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -152,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `turista` (
 --
 
 INSERT INTO `turista` (`id`, `edad`, `pais_origen`) VALUES
-(1, 55, 'Tangamandapio'),
-(2, 31, 'Nosedonde');
+(3, 21, 'Argentina'),
+(4, 39, 'Chile');
 
 -- --------------------------------------------------------
 
@@ -169,19 +175,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `foto` varchar(100) DEFAULT NULL,
   `tipo` varchar(100) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `email_2` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
-(1, 'test1@test1.com', 'Fulano de Tal', '123', NULL, 'turista'),
-(2, 'test2@test2.com', 'Sultano de Tal', '123', NULL, 'turista'),
-(3, 'test3@test3.com', 'Senior de Negocios', '123', NULL, 'empresa'),
-(4, 'test4@test4.com', 'Seniora de Empresa', '123', NULL, 'empresa'),
-(5, 'otroyo@otroyo.com', 'Mateo el empresario', '123', NULL, 'empresa');
+(1, 'test1@test1.com', 'Fulano de Empresa', '123', NULL, 'empresa'),
+(2, 'test2@test2.com', 'Sultano de Empresa', '123', NULL, 'empresa'),
+(3, 'test3@test3.com', 'Fulano de Turista', '123', NULL, 'turista'),
+(4, 'test4@test4.com', 'Sultano de Turista', '123', NULL, 'turista');
 
 -- --------------------------------------------------------
 

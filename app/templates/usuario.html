@@ -3,7 +3,7 @@
 {% block content %}
 <section id="usuario">
     <article id="usuario-informacion">
-        Datos del usuario:<br/><br/>
+        <center>Datos del usuario:</center><br/><br/>
         <p>
             Nombre: {{ session['nombre'] }}
         </p>
@@ -14,16 +14,16 @@
             Tipo de cuenta: {{ session['tipo'] }}
         </p>
         <p>
-            <button><a href="{{ url_for('modificarUsuario') }}">Modificar usuario</a></button>
+            <a href="{{ url_for('modificarUsuario') }}"><button>Modificar usuario</button></a>
         </p>
     </article>
     <article id="danger-zone">
         <center>
-            ATENCIÓN: ESTÁS ENTRANDO A LA ZONA DE PELIGRO. LA INTEGRIDAD DE TU CUENTA ESTÁ COMPROMETIDA SI INTERACTÚAS CON EL CONTENIDO DE ESTA ZONA. <br/>
+            ¿DESEAS ELIMINAR TU USUARIO? <strong>ESTA ACCION NO PUEDE DESHACERSE</strong><br/>
             <button onclick="confirmarBorrarUsuario()">BORRAR USUARIO</button>
             <div id="confirmar-borrar-usuario">
-                SI REALMENTE ESTÁS SEGURO DE QUERER BORRAR TU USUARIO, CONFIRMALO:
-                <button><a href="{{ url_for('logout', id_usuario=session['id_usuario']) }}">QUIERO BORRAR MI USUARIO DEFINITIVAMENTE</a></button>
+                ¿DESEAS ELIMINAR TU USUARIO DEFINITIVAMENTE?
+                <a href="{{ url_for('logout', id_usuario=session['id_usuario']) }}"><button id="confirmacion-borrar-empresa">QUIERO BORRAR MI USUARIO DEFINITIVAMENTE</button></a>
             </div>
         </center>
     </article>

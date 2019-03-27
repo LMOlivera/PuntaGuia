@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if not lista|length == 0 %}
+    {% for lugar in lista %}
+    <p>
+        {{ lugar['nombre'] }}<br>
+        {{ lugar['descripcion'] }}
+        {{ lugar['ubicacion'] }}
+        {{ lugar['horario'] }}
+        {% if lugar['tipo']=='evento' %}
+            {{ lugar['fecha'] }}
+        {% endif %}
+        <a href="{{ url_for('logicaEliminarDePorVisitar', categoria=cat, ide=lugar['ide'], dato='extra') }}"><button> Eliminar de "Por visitar"</button></a>
+    </p>
+{% endfor %}
+{% else %}
+    <p>No tienes lugares en tu lista "Por visitar".</p>
+{% endif %}
+</form>
+{% endblock %}

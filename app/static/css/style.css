@@ -1,41 +1,77 @@
 /*CSS separado en partes para meter las interfaces rápido,
 hay que unirlo refactorizado. Tener todo separado afecta la
 performance de la aplicación.*/
+@import "404.css";
+@import "500.css";
 @import "agregar_lugar.css";
 @import "bienvenido.css";
 @import "categoria.css";
 @import "eliminar_lugar.css";
 @import "modificar_lugar.css";
 @import "modificar_usuario.css";
+@import "por_visitar.css";
 @import "principal.css";
 @import "registro.css";
 @import "usuario.css";
 
-/*El cuerpo del programa*/
-html, body {
-    height: 80%;
-    background-color: #4286f4;
+html {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+a button {
+    text-decoration: none;
+}
+
+/*El cuerpo del programa*/
+body {
+    height: 50%; /*80*/
+    background-image: url("/static/dedos-background.png");
+    /*padding: 15%;*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
 
 /*La barra de navegación*/
 nav{
-    background-color: red;
+    background-color: rgba(7, 91, 248, 0.445);
     text-align: center;
+    margin: 2vw 5vw;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+    line-height: 10px;
 }
 
 
 nav ul{
     margin: 0;
-    padding: 0;
+    padding: 10px;
     /*NO TOCAR*/
     display: flex;
     list-style-type: none;
     /**********/
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*Elementos de la barra de navegación*/
 nav ul li{
     margin-left: 10px;
     margin-right: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: aqua;
+    font-size: 20px;
+}
+#logo-image-nav {
+    height: 3vw;
 }
 
+@media (max-width: 500px) {  /*REVISAR ESTA PARTE-----------------------------------------------------------------------------------------------------------------*/
+    body {
+        height: 20%;
+    }
+}

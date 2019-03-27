@@ -5,13 +5,13 @@
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <p>
-        {{ form.nombre.label }}: {{ form.nombre(size=32) }}<br>
+        {{ form.nombre.label }}: {{ form.nombre(size=32, required='required') }}<br>
     </p>
     <p>
-        {{ form.descripcion.label }}: {{ form.descripcion(size=100) }}<br>
+        {{ form.descripcion.label }}: {{ form.descripcion(size=100, required='required') }}<br>
     </p>
     <p>
-        {{ form.ubicacion.label }}: {{ form.ubicacion(size=32) }}<br>
+        {{ form.ubicacion.label }}: {{ form.ubicacion(size=32, required='required') }}<br>
     </p>
     <p>
         {{ form.categoria.label }}: {{ form.categoria }}<br>
@@ -20,10 +20,10 @@
         {{ form.tipo.label }}: {{ form.tipo }}
     </p>
     <p>
-        {{ form.horario.label }}: {{ form.horario(size=32) }}<br>
+        {{ form.horario.label }}: {{ form.horario(size=32, required='required') }}<br>
     </p>
     <p>
-        {{ form.fecha.label }}: {{ form.fecha(size=32) }}<br>
+        {{ form.fecha.label }}(Si es un evento): {{ form.fecha(size=32) }}<br>
     </p>
     <p>
         <p>{{ form.submit() }}</p>

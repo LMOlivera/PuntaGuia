@@ -1,15 +1,23 @@
 {% extends "base.html" %}
-
-{% block content %}
-<center>Datos del establecimiento/evento<br/><br/></center>
-<p>
-    INFORMACION DEL LUGAR PRÓXIMAMENTE
-</p><br>
-<p>
-    Confirme que realmente desea eliminar este establecimiento/evento, esta acción no se puede revertir:
-    <form action='' method="POST">
-        <input type="submit" value='Confirmar'>
-    </form>
-</p>
+    {% block content %}
+<div>
+    <div id="eliminar-lugar-descripcion">
+    <h1>{{ lugar['nombre'] }}<br/><br/></h1>
+    <p>{{ lugar['descripcion'] }}</p><br/>
+    <p>Ubicación: {{ lugar['ubicacion'] }}</p><br/>
+    <p>Horario: {{ lugar['horario'] }}</p><br/>
+    {% if lugar['tipo']=='evento' %}
+    <p>Día del evento: {{ lugar['fecha'] }}</p><br>
+    {% endif %}
+</div>
+<div id="confirmacion-eliminar-evento">
+    <center><p id="titulo-confirmacion-eliminacion">Eliminar {{ lugar['nombre'] }}</p></center>
+    <p>
+        Confirme que realmente desea eliminar este establecimiento/evento, esta acción no se puede revertir:
+        <form action='' method="POST" id="confirmar-boton">
+            <input type="submit" value='Confirmar'>
+        </form>
+    </p>
+</div>
 </form>
 {% endblock %}

@@ -1,0 +1,77 @@
+#principal-conteiner {
+    display: flex;
+}
+
+#clima-content {
+    width: 250px;
+    height: 600px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+}
+
+/*-------EMPRESA-------*/
+#principal-contenedor-empresa {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#listar-establecimientos-lugares {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100%;
+    margin: 2vw 5vw 2vw 1vw;
+    background-color: rgba(159, 186, 236, 0.568);
+    padding: 6px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+}
+#listar-establecimientos-lugares-p {
+    width: 50vw;
+    margin-left: 2vw;
+    margin-top: 2.5vw;
+    margin-bottom: 3vw;
+}
+#modificar-borrar-buttons {
+    display: flex; /*si algo se rompe, borrar esto*/
+    margin-top: 2.5vw;
+    margin-left: 4vw;
+    width: 20%;
+    transform: scale(1.3);
+}
+hr {
+    color: rgb(59, 70, 90);
+}
+#dialog-agregar button {
+    padding: 3vw;
+    font-size: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19);
+    margin: 2vw 5vw;
+
+}
+
+@media (max-width: 800px) {
+    #principal-contenedor-empresa{
+        flex-direction: column;
+        width: 90vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    #dialog-agregar button {
+        width: 100%;
+        margin: 30px;
+    }
+    #listar-establecimientos-lugares {
+        flex-direction: column;
+        width: 80vw;
+    }
+    #listar-establecimientos-lugares-p {
+        width: 90%;
+    }
+    #modificar-borrar-button {
+        width: 10%;
+        align-items: baseline;
+    }
+}
