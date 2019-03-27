@@ -5,7 +5,7 @@ class SqlUpdate:
         self.conexion = pymysql.connect(host='localhost',
                              user='root',
                              password='',
-                             db='uruguia_bd_test',
+                             db='puntaguia_bd_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
         
