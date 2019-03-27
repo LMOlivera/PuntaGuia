@@ -1,4 +1,4 @@
-import os
+﻿import os
 
 class Config(object):
     # La variable de configuración SECRET_KEY es muy importante,
@@ -8,4 +8,4 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     # Una vez creada hay que decirle a Flask que la use.
     # routes.py usa app.config.from_object para usarla.
-    # uruguia.py también.
+    # puntaguia.py también.
