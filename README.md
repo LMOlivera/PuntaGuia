@@ -23,11 +23,11 @@ Para poder trabajar con este repositorio necesitas tener en tu máquina local lo
 
 ### Instalación
 
-Descargar el repositorio. Abrir WAMPServer e importar la base de datos que se encuentra en la carpeta "Base de datos" del repositorio (uruguia_bd_test.sql).
+Descargar el repositorio. Abrir WAMPServer e importar la base de datos que se encuentra en la carpeta "Base de datos" del repositorio (puntaguia_bd_test.sql).
 
 ##### Base de datos
 
-La base de datos del proyecto está hecha en MySQL. Se debe descargar [WAMPServer](http://www.wampserver.es/#home), entrar en phpMyAdmin, crear una base de datos (por ejemplo, uruguia_bd_test), entrar a ella y en la pestaña de SQL ingresar el contenido del archivo que se encuentra en la carpeta "Base de Datos".
+La base de datos del proyecto está hecha en MySQL. Se debe descargar [WAMPServer](http://www.wampserver.es/#home), entrar en phpMyAdmin, crear una base de datos (por ejemplo, puntaguia_bd_test), entrar a ella y en la pestaña de SQL ingresar el contenido del archivo que se encuentra en la carpeta "Base de Datos".
 
 Ahora, para poder hacer que la aplicación Flask se conecte a WAMPServer, **se deben editar las 4 clases Sql (Insert, Update, Delete y Select) dentro de la carpeta /app/logic**. El objeto "conexion" llama a una función con una serie de parámetros los cuales se deben modificar para poder conectarse:
 ```python
@@ -55,7 +55,7 @@ Si se han instalado todos los programas de prerequisito, se cargó la base de da
   - routes.py: Contiene las URL (routing) del sistema.
 - README.md: Esta guía.
 - Start-Server.bat: Si lo ejecutas en tu computadora cargará la aplicación en tu navegador.
-- uruguia.py: Este archivo carga todo lo de la carpeta "app".
+- puntaguia.py: Este archivo carga todo lo de la carpeta "app".
 
 ## Construido con
 
