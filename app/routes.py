@@ -27,7 +27,7 @@ def bienvenido():
                 flash('Usuario y/o contraseña inválidos')                
                 session['invalid_user']="true"               
                 return redirect('/')                    
-    return render_template('bienvenido.html', title='¡Bienvenido a UruGuia!', form=form)
+    return render_template('bienvenido.html', title='¡Bienvenido a PuntaGuia!', form=form)
 
 #TRY-CATCH APAGADO
 @app.route('/index/registro', methods=['GET', 'POST'])
