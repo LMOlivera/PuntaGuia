@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-03-2019 a las 19:22:25
+-- Tiempo de generación: 25-04-2019 a las 22:50:25
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS `agrega_a_lista` (
   `orden` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `agrega_a_lista`
+--
+
+INSERT INTO `agrega_a_lista` (`id`, `ide`, `orden`) VALUES
+(1, 1, 1),
+(1, 2, 2),
+(1, 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`idc`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -72,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 
 INSERT INTO `empresa` (`id`, `nombre`) VALUES
-(1, 'Empresa de Test 1'),
-(2, 'Empresa de Test 2');
+(3, 'Espacios AP'),
+(4, 'Eventos M');
 
 -- --------------------------------------------------------
 
@@ -92,15 +101,15 @@ CREATE TABLE IF NOT EXISTS `lugar` (
   `fecha` date DEFAULT NULL,
   PRIMARY KEY (`ide`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `lugar`
 --
 
 INSERT INTO `lugar` (`ide`, `nombre`, `descripcion`, `imagen`, `ubicacion`, `tipo`, `horario`, `fecha`) VALUES
-(1, 'Un establecimiento de prueba', 'Un establecimiento muy lindo que deberías ir a ver alguna vez.', NULL, 'Algún lugar al que te gustará ir.', 'Establecimiento', 'Siempre abierto', '0000-00-00'),
-(2, 'Un evento', 'Para pasar un día lindo.', NULL, 'Av. Falsa 123', 'Evento', '08:00 a 20:00', '2019-03-19');
+(1, 'Cancha de fútbol "Campeones"', 'Una cancha al aire libre.', NULL, 'Alvariza 2030', 'Establecimiento', 'de 8:00 a 00:00', '0000-00-00'),
+(2, 'Manjares', 'Restaurante que utiliza grandes cantidades de azúcar en sus comidas.', NULL, 'Central 345', 'Establecimiento', 'De 10:00 a 02:00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -119,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `pertenece_a` (
 
 INSERT INTO `pertenece_a` (`ide`, `idc`) VALUES
 (1, 1),
-(2, 4);
+(2, 2);
 
 -- --------------------------------------------------------
 
@@ -137,8 +146,8 @@ CREATE TABLE IF NOT EXISTS `tiene` (
 --
 
 INSERT INTO `tiene` (`ide`, `id`) VALUES
-(1, 1),
-(2, 1);
+(1, 3),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -158,8 +167,8 @@ CREATE TABLE IF NOT EXISTS `turista` (
 --
 
 INSERT INTO `turista` (`id`, `edad`, `pais_origen`) VALUES
-(3, 21, 'Argentina'),
-(4, 39, 'Chile');
+(1, 38, 'Argentina'),
+(2, 44, 'Colombia');
 
 -- --------------------------------------------------------
 
@@ -177,17 +186,17 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `email_2` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `email`, `nombre`, `contrasena`, `foto`, `tipo`) VALUES
-(1, 'test1@test1.com', 'Fulano de Empresa', '123', NULL, 'empresa'),
-(2, 'test2@test2.com', 'Sultano de Empresa', '123', NULL, 'empresa'),
-(3, 'test3@test3.com', 'Fulano de Turista', '123', NULL, 'turista'),
-(4, 'test4@test4.com', 'Sultano de Turista', '123', NULL, 'turista');
+(1, 'carlosrodriguez@turistmail.com', 'Carlos Rodriguez', '123456', NULL, 'turista'),
+(2, 'alfonsogonzalez@turistmail.com', 'Alfonso Gonzalez', '123456', NULL, 'turista'),
+(3, 'arianapequenia@empresarial.com', 'Ariana Pequenia', '123456', NULL, 'empresa'),
+(4, 'martabarbaro@empresarial.com', 'Marta Bárbaro', '123456', NULL, 'empresa');
 
 -- --------------------------------------------------------
 

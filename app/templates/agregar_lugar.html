@@ -3,7 +3,7 @@
 {% block content %}
 <div id="contenedor-agregar-lugar">
     <center>Ingrese datos del establecimiento/evento<br/><br/></center>
-    <form action="" method="post" id="form-agregar-lugar">
+    <form action="" autocomplete='off' method="post" id="form-agregar-lugar">
         {{ form.hidden_tag() }}
         <p>
             {{ form.nombre.label }}: {{ form.nombre(size=32, required='required') }}<br>

@@ -10,7 +10,7 @@ class SqlDelete:
                              cursorclass=pymysql.cursors.DictCursor)
     
     #SI ES UNA EMPRESA DEBE BORRARSE TAMBIEN LOS LUGARES ASOCIADOS Y TAMBIEN DE LA LISTA DEL TIPO TURISTA
-    def borrarUsuario(self, id_usuario, tipo, lugares={}):
+    def borrarUsuario(self, id_usuario, tipo, lugares=False):
         with self.conexion.cursor() as cursor:
             query = """
                     DELETE FROM usuario WHERE id_usuario=%s
@@ -46,7 +46,7 @@ class SqlDelete:
                                         """ 
                                 cursor.execute(query,(lugar['ide']))
                                 query = """
-                                        DELETE FROM lugar agrega_a_lista ide=%s
+                                        DELETE FROM agrega_a_lista ide=%s
                                         """ 
                                 cursor.execute(query,(lugar['ide']))
         self.conexion.commit()
