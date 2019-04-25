@@ -6,7 +6,7 @@
         <div id="registro-pet">
             <img src="/static/sun.png" class="responsive-image" alt="Imagen de la mascota.">
         </div>
-        <form id="registro-formulario" action="" method="post">
+        <form id="registro-formulario" autocomplete='off' action="" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.email.label }}<br>

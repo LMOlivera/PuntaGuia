@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="" method="post" id="titulo-datos" >
+<form action="" method="post" id="titulo-datos" autocomplete='off'>
     <center>Datos del establecimiento/evento<br/><br/></center>
     {{ form.hidden_tag() }}
     <div id="formulario-modificar-evento">
@@ -35,6 +35,5 @@
     <p>
         <p id="boton-modificar-empresa">{{ form.submit(value='Modificar') }}</p>
     </p>
-</form>
 </form>
 {% endblock %}
