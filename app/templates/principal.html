@@ -32,21 +32,24 @@
     <div id="listar-establecimientos-lugares">
         {% if not lugares|length == 0 %}
             {% for lugar in lugares %}
-            <p id="listar-establecimientos-lugares-p">
-                {{ lugar['nombre'] }}
-                {{ lugar['descripcion'] }}
-                {{ lugar['ubicacion'] }}
-                {{ lugar['tipo'] }}
-                {{ lugar['horario'] }}
-                {% if lugar['tipo'] == "Evento"%}
-                    {{ lugar['fecha'] }}
-                {% endif %}
+            <div id="listar-establecimientos-container">
+                <p id="listar-establecimientos-lugares-p">
+                    {{ lugar['nombre'] }}
+                    {{ lugar['descripcion'] }}
+                    {{ lugar['ubicacion'] }}
+                    {{ lugar['tipo'] }}
+                    {{ lugar['horario'] }}
+                    {% if lugar['tipo'] == "Evento"%}
+                        {{ lugar['fecha'] }}
+                    {% endif %}
+                </p>
                 <div id="modificar-borrar-buttons">
                     <a href="{{ url_for('modificar_lugar', nombre=lugar['nombre']) }}"><button>Modificar</button></a>
+                       
                     <a href="{{ url_for('eliminar_lugar', nombre=lugar['nombre']) }}"><button>Eliminar</button></a>
                 </div>
-                <hr align="left" width="100%">
-            </p>
+            </div>
+            <hr align="left" width="100%">
             {% endfor %}
         {% else %}
             No tienes lugares creados.
