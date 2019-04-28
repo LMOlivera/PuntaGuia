@@ -7,8 +7,8 @@ a {
 }
 
 #bienvenido-container{
-    height: auto;
-    margin: 5vw;
+    height: 80vh;
+    padding: 2vw;
 }
 
 #bienvenido-contenido{
@@ -104,9 +104,6 @@ button:hover , #submit:hover {
     button {
         font-size: 14px;
         line-height: 14px;
-    }
-    #bienvenido-container {
-        margin: 8vw;
     }
 
     #bienvenido-boton-mostrado button {

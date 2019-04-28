@@ -23,6 +23,7 @@ a button {
 
 /*El cuerpo del programa*/
 body {
+    overflow-x: hidden;
     height: 50%; /*80*/
     background-image: url("/static/dedos-background.png");
     /*padding: 15%;*/
